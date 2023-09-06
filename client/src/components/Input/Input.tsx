@@ -1,0 +1,37 @@
+import { TextField } from '@mui/material';
+import React from 'react';
+
+interface TextInputProps {
+	field: {
+		name?: string;
+		value?: any;
+		onChange?: (event: React.ChangeEvent<any>) => void;
+		onBlur?: (event: React.FocusEvent<any>) => void;
+		label: string;
+		disabled?: boolean;
+		size?: 'medium' | 'small';
+		type?: 'email' | 'text' | 'number' | 'date';
+		required?: boolean;
+	};
+	form?: any;
+	shrink?: boolean; // Agrega la prop shrink
+	// Add more custom props specific to TextInput if needed
+}
+
+const MyInput: React.FC<TextInputProps> = ({
+	field,
+	shrink, // Accede a shrink desde props
+	...props
+}) => {
+	return (
+		<TextField
+			fullWidth
+			type='text'
+			{...field}
+			{...props}
+			InputLabelProps={{ shrink: shrink }} // Usa shrink desde props
+		/>
+	);
+};
+
+export default MyInput;

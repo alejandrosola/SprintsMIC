@@ -1,0 +1,25 @@
+[
+	{
+		"legalName": "Organización A",
+		"address": "Calle Principal 123",
+		"cuit": "12345678901",
+		"phone": "123-456-7890",
+		"status": "IN_REVIEW",
+		"owned": {
+			"email": "example@example.com"
+		},
+		"validator": {
+			"email": "admin@admin.com"
+		}
+	},
+	{
+		"legalName": "Organización B",
+		"address": "Calle Principal 456",
+		"cuit": "10987654321",
+		"phone": "098-765-4321",
+		"status": "PENDING",
+		"owned": {
+			"email": "example@example.com"
+		}
+	}
+]

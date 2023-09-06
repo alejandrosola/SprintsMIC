@@ -1,0 +1,873 @@
+{
+	"categorias": [
+		{
+			"nombre": "Negocios y Servicios",
+			"subcategorias": [
+				{
+					"nombre": "Alojamiento",
+					"subcategorias": [
+						{ "nombre": "Hoteles", "subcategorias": [] },
+						{ "nombre": "Moteles", "subcategorias": [] },
+						{ "nombre": "Hostales y albergues", "subcategorias": [] },
+						{
+							"nombre": "Apartamentos y alquileres vacacionales",
+							"subcategorias": []
+						},
+						{ "nombre": "Casas de huéspedes", "subcategorias": [] },
+						{ "nombre": "Resorts y complejos turísticos", "subcategorias": [] },
+						{
+							"nombre": "Campings y áreas de autocaravanas",
+							"subcategorias": []
+						},
+						{ "nombre": "Pensiones y posadas", "subcategorias": [] }
+					]
+				},
+				{ "nombre": "Bancos y cajeros automáticos", "subcategorias": [] },
+				{
+					"nombre": "Comida y restaurantes",
+					"subcategorias": [
+						{ "nombre": "Restaurante", "subcategorias": [] },
+						{ "nombre": "Cafeterías y bares de café", "subcategorias": [] },
+						{ "nombre": "Pizzerías", "subcategorias": [] },
+						{ "nombre": "Heladerías", "subcategorias": [] },
+						{ "nombre": "Panaderías", "subcategorias": [] },
+						{ "nombre": "Bares y pubs", "subcategorias": [] },
+						{ "nombre": "Parrillas y asadores", "subcategorias": [] }
+					]
+				},
+				{
+					"nombre": "Compras",
+					"subcategorias": [
+						{ "nombre": "Centros comerciales", "subcategorias": [] },
+						{
+							"nombre": "Supermercados y mercados de abastos",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Tiendas de comestibles y delicatesen",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Tiendas de electrónica y tecnología",
+							"subcategorias": []
+						},
+						{ "nombre": "Tiendas de ropa y moda", "subcategorias": [] },
+						{ "nombre": "Tiendas de calzado", "subcategorias": [] },
+						{
+							"nombre": "Tiendas de artículos deportivos",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Tiendas de muebles y decoración",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Tiendas de electrodomésticos y línea blanca",
+							"subcategorias": []
+						},
+						{ "nombre": "Tiendas de juguetes y juegos", "subcategorias": [] },
+						{
+							"nombre": "Tiendas de libros y artículos de papelería",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Tiendas de belleza y cuidado personal",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Tiendas de accesorios y complementos",
+							"subcategorias": []
+						},
+						{ "nombre": "Tiendas de arte y manualidades", "subcategorias": [] },
+						{
+							"nombre": "Tiendas de productos naturales y orgánicos",
+							"subcategorias": []
+						},
+						{ "nombre": "Tiendas de regalos y souvenirs", "subcategorias": [] },
+						{
+							"nombre": "Tiendas de instrumentos musicales",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Tiendas de alimentos para mascotas",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Tiendas de suministros y materiales de construcción",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Tiendas de automóviles y repuestos",
+							"subcategorias": []
+						}
+					]
+				},
+				{
+					"nombre": "Educación",
+					"subcategorias": [
+						{
+							"nombre": "Escuelas primarias y secundarias",
+							"subcategorias": []
+						},
+						{ "nombre": "Institutos y colegios técnicos", "subcategorias": [] },
+						{ "nombre": "Universidades y facultades", "subcategorias": [] },
+						{
+							"nombre": "Escuelas de idiomas y cursos de idiomas",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Escuelas de música y clases de música",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Escuelas de danza y clases de baile",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Escuelas de arte y clases de pintura y dibujo",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Escuelas de teatro y clases de actuación",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Escuelas de informática y cursos de programación",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Escuelas de negocios y cursos de administración",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Escuelas de diseño y cursos de diseño gráfico",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Escuelas de fotografía y cursos de fotografía",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Escuelas de cocina y clases de cocina",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Escuelas de conducción y cursos de manejo",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Escuelas de educación especial y clases de apoyo",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Escuelas de educación para adultos y cursos de capacitación laboral",
+							"subcategorias": []
+						}
+					]
+				},
+				{
+					"nombre": "Entretenimiento",
+					"subcategorias": [
+						{ "nombre": "Cines", "subcategorias": [] },
+						{
+							"nombre": "Teatros y salas de espectáculos",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Centros de juegos y recreativos",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Parques de atracciones y temáticos",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Centros de escape y juegos de aventura",
+							"subcategorias": []
+						},
+						{ "nombre": "Boleras y pistas de boliche", "subcategorias": [] },
+						{ "nombre": "Parques acuáticos y piscinas", "subcategorias": [] },
+						{
+							"nombre": "Salas de conciertos y recitales",
+							"subcategorias": []
+						},
+						{ "nombre": "Clubes nocturnos y discotecas", "subcategorias": [] },
+						{ "nombre": "Salones de karaoke", "subcategorias": [] },
+						{ "nombre": "Centros de arte y cultura", "subcategorias": [] },
+						{
+							"nombre": "Galerías de arte y exposiciones",
+							"subcategorias": []
+						},
+						{ "nombre": "Museos y centros de ciencias", "subcategorias": [] },
+						{ "nombre": "Bibliotecas y librerías", "subcategorias": [] },
+						{ "nombre": "Estadios y arenas deportivas", "subcategorias": [] }
+					]
+				},
+				{
+					"nombre": "Eventos",
+					"subcategorias": [
+						{
+							"nombre": "Conciertos y espectáculos musicales",
+							"subcategorias": []
+						},
+						{ "nombre": "Teatro", "subcategorias": [] },
+						{ "nombre": "Eventos deportivos", "subcategorias": [] },
+						{ "nombre": "Festivales y ferias", "subcategorias": [] },
+						{ "nombre": "Exhibiciones y exposiciones", "subcategorias": [] },
+						{ "nombre": "Conferencias y convenciones", "subcategorias": [] },
+						{
+							"nombre": "Eventos culturales y artísticos",
+							"subcategorias": []
+						},
+						{ "nombre": "Eventos de moda y belleza", "subcategorias": [] },
+						{ "nombre": "Eventos educativos y talleres", "subcategorias": [] },
+						{
+							"nombre": "Eventos de negocios y networking",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Eventos de caridad y recaudación de fondos",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Eventos familiares y actividades para niños",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Eventos de comida y gastronomía",
+							"subcategorias": []
+						},
+						{ "nombre": "Eventos de cine y proyecciones", "subcategorias": [] },
+						{ "nombre": "Eventos de salud y bienestar", "subcategorias": [] },
+						{
+							"nombre": "Eventos de tecnología e innovación",
+							"subcategorias": []
+						},
+						{ "nombre": "Eventos de turismo y viajes", "subcategorias": [] },
+						{
+							"nombre": "Eventos de música en vivo y bandas locales",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Eventos de arte callejero y performances",
+							"subcategorias": []
+						}
+					]
+				},
+				{
+					"nombre": "Salud y servicios médicos",
+					"subcategorias": [
+						{ "nombre": "Hospitales y clínicas", "subcategorias": [] },
+						{
+							"nombre": "Consultorios médicos y odontológicos",
+							"subcategorias": []
+						},
+						{ "nombre": "Farmacias y droguerías", "subcategorias": [] },
+						{
+							"nombre": "Laboratorios médicos y de análisis clínicos",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Ópticas y centros de cuidado de la vista",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Centros de rehabilitación y fisioterapia",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Centros de atención psicológica y psiquiátrica",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Centros de atención para adultos mayores",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Centros de atención materno-infantil y pediátrica",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Centros de atención de enfermedades específicas",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Clínicas de atención de emergencia y urgencias médicas",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Centros de salud mental y bienestar",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Centros de medicina alternativa y terapias complementarias",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Centros de atención de adicciones y desintoxicación",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Centros de cuidado y asistencia domiciliaria",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Centros de prevención y promoción de la salud",
+							"subcategorias": []
+						}
+					]
+				},
+				{
+					"nombre": "Transporte público",
+					"subcategorias": [
+						{ "nombre": "Estaciones de tren", "subcategorias": [] },
+						{
+							"nombre": "Estaciones de metro o subterráneo",
+							"subcategorias": []
+						},
+						{ "nombre": "Paradas de autobús", "subcategorias": [] },
+						{
+							"nombre": "Terminales de autobuses o estaciones de autobuses",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Estaciones de tranvía o trolebús",
+							"subcategorias": []
+						},
+						{ "nombre": "Estaciones de ferrocarril", "subcategorias": [] },
+						{
+							"nombre": "Estaciones de bicicletas compartidas",
+							"subcategorias": []
+						},
+						{ "nombre": "Estaciones de taxis", "subcategorias": [] },
+						{
+							"nombre": "Estaciones de teleféricos o funiculares",
+							"subcategorias": []
+						},
+						{ "nombre": "Puertos y terminales marítimas", "subcategorias": [] }
+					]
+				}
+			]
+		},
+		{
+			"nombre": "Lugares de interés",
+			"subcategorias": [
+				{
+					"nombre": "Atracciones turísticas",
+					"subcategorias": [
+						{ "nombre": "Monumentos y sitios históricos", "subcategorias": [] },
+						{ "nombre": "Museos y galerías de arte", "subcategorias": [] },
+						{ "nombre": "Parques y jardines", "subcategorias": [] },
+						{ "nombre": "Miradores y puntos panorámicos", "subcategorias": [] },
+						{
+							"nombre": "Lugares religiosos y lugares de culto",
+							"subcategorias": []
+						},
+						{ "nombre": "Playas y costas", "subcategorias": [] },
+						{ "nombre": "Zoológicos y acuarios", "subcategorias": [] },
+						{
+							"nombre": "Parques temáticos y de atracciones",
+							"subcategorias": []
+						},
+						{ "nombre": "Lugares naturales y paisajes", "subcategorias": [] },
+						{ "nombre": "Lagos y lagunas", "subcategorias": [] },
+						{ "nombre": "Montañas y cordilleras", "subcategorias": [] },
+						{
+							"nombre": "Cuevas y formaciones geológicas",
+							"subcategorias": []
+						},
+						{ "nombre": "Cascadas y cataratas", "subcategorias": [] },
+						{
+							"nombre": "Reservas naturales y áreas protegidas",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Ruinas y yacimientos arqueológicos",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Recorridos turísticos y visitas guiadas",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Paseos en barco o embarcaciones turísticas",
+							"subcategorias": []
+						},
+						{ "nombre": "Festivales y eventos culturales", "subcategorias": [] }
+					]
+				},
+				{
+					"nombre": "Parques y naturaleza",
+					"subcategorias": [
+						{
+							"nombre": "Parques nacionales y reservas naturales",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Parques urbanos y espacios verdes",
+							"subcategorias": []
+						},
+						{ "nombre": "Jardines botánicos y arboretos", "subcategorias": [] },
+						{ "nombre": "Senderos y rutas de senderismo", "subcategorias": [] },
+						{
+							"nombre": "Áreas de picnic y recreación al aire libre",
+							"subcategorias": []
+						},
+						{ "nombre": "Playas y costas", "subcategorias": [] },
+						{ "nombre": "Lagos y lagunas", "subcategorias": [] },
+						{ "nombre": "Montañas y cordilleras", "subcategorias": [] },
+						{ "nombre": "Cascadas y cataratas", "subcategorias": [] },
+						{ "nombre": "Bosques y selvas", "subcategorias": [] },
+						{ "nombre": "Desiertos y paisajes áridos", "subcategorias": [] },
+						{
+							"nombre": "Cuevas y formaciones geológicas",
+							"subcategorias": []
+						},
+						{ "nombre": "Miradores y puntos panorámicos", "subcategorias": [] },
+						{
+							"nombre": "Observación de aves y fauna silvestre",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Actividades de ecoturismo y turismo de naturaleza",
+							"subcategorias": []
+						}
+					]
+				},
+				{
+					"nombre": "Museos y galerías",
+					"subcategorias": [
+						{ "nombre": "Museos de arte", "subcategorias": [] },
+						{ "nombre": "Museos de historia", "subcategorias": [] },
+						{ "nombre": "Museos de ciencias", "subcategorias": [] },
+						{ "nombre": "Galerías de arte contemporáneo", "subcategorias": [] },
+						{ "nombre": "Galerías de arte tradicional", "subcategorias": [] },
+						{ "nombre": "Museos de historia natural", "subcategorias": [] },
+						{ "nombre": "Museos de arqueología", "subcategorias": [] },
+						{
+							"nombre": "Museos de tecnología e innovación",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Museos temáticos (ejemplo: museos de música, de deportes, de moda, etc.)",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Galerías de fotografía y exposiciones visuales",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Museos de antropología y culturas locales",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Museos interactivos y de experiencias",
+							"subcategorias": []
+						},
+						{ "nombre": "Museos de arte moderno", "subcategorias": [] },
+						{
+							"nombre": "Museos de diseño y arquitectura",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Galerías de arte independientes",
+							"subcategorias": []
+						},
+						{ "nombre": "Museos de bellas artes", "subcategorias": [] },
+						{
+							"nombre": "Museos de automóviles y transporte",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Museos de juguetes y coleccionables",
+							"subcategorias": []
+						}
+					]
+				},
+				{
+					"nombre": "Lugares históricos",
+					"subcategorias": [
+						{
+							"nombre": "Monumentos y estatuas históricas",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Sitios arqueológicos y ruinas antiguas",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Edificios y estructuras históricas",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Lugares de importancia histórica",
+							"subcategorias": []
+						},
+						{ "nombre": "Lugares de batallas históricas", "subcategorias": [] },
+						{ "nombre": "Tumbas y mausoleos históricos", "subcategorias": [] },
+						{
+							"nombre": "Sitios de patrimonio mundial de la UNESCO",
+							"subcategorias": []
+						},
+						{ "nombre": "Casas y residencias históricas", "subcategorias": [] },
+						{
+							"nombre": "Iglesias y catedrales históricas",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Museos de historia local y regional",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Fortalezas y castillos históricos",
+							"subcategorias": []
+						},
+						{ "nombre": "Puentes y viaductos históricos", "subcategorias": [] },
+						{ "nombre": "Plazas y plazas históricas", "subcategorias": [] },
+						{
+							"nombre": "Cementerios y lugares de entierro históricos",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Antiguas rutas y caminos históricos",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Monumentos conmemorativos y memoriales históricos",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Sitios de importancia cultural y tradicional",
+							"subcategorias": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"nombre": "Vehículos y Transporte",
+			"subcategorias": [
+				{
+					"nombre": "Estaciones de servicio",
+					"subcategorias": [
+						{ "nombre": "Gasolineras", "subcategorias": [] },
+						{
+							"nombre": "Estaciones de carga para vehículos eléctricos",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Estaciones de servicio con tienda de conveniencia",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Estaciones de servicio con lavado de autos",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Estaciones de servicio con taller mecánico",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Estaciones de servicio para camiones y vehículos de carga",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Estaciones de servicio con venta de alimentos y bebidas",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Estaciones de servicio con servicios adicionales (ejemplo: baños públicos, cajeros automáticos, etc.)",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Estaciones de servicio con áreas de descanso y recreación",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Estaciones de servicio con puntos de venta de aceite y lubricantes",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Estaciones de servicio con servicios de asistencia vial y grúa",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Estaciones de servicio con programas de fidelidad y recompensas",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Estaciones de servicio con servicios de cambio de neumáticos",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Estaciones de servicio con puntos de reciclaje y disposición de residuos",
+							"subcategorias": []
+						}
+					]
+				},
+				{
+					"nombre": "Estacionamientos",
+					"subcategorias": [
+						{ "nombre": "Estacionamientos públicos", "subcategorias": [] },
+						{ "nombre": "Estacionamientos privados", "subcategorias": [] },
+						{
+							"nombre": "Estacionamientos cubiertos o techados",
+							"subcategorias": []
+						},
+						{ "nombre": "Estacionamientos al aire libre", "subcategorias": [] },
+						{ "nombre": "Estacionamientos subterráneos", "subcategorias": [] },
+						{
+							"nombre": "Estacionamientos con servicio de valet",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Estacionamientos para bicicletas",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Estacionamientos para motocicletas",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Estacionamientos para discapacitados",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Estacionamientos con sistemas de pago automatizado",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Estacionamientos con vigilancia y seguridad",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Estacionamientos con carga para vehículos eléctricos",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Estacionamientos con servicios adicionales (ejemplo: lavado de autos, mantenimiento, etc.)",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Estacionamientos con tarifas especiales por tiempo o temporada",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Estacionamientos con servicios de reserva o reserva anticipada",
+							"subcategorias": []
+						}
+					]
+				},
+				{
+					"nombre": "Talleres y concesionarios de automóviles",
+					"subcategorias": [
+						{
+							"nombre": "Talleres de reparación mecánica",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Talleres de carrocería y pintura",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Talleres de mantenimiento y servicio de automóviles",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Talleres de reparación de vidrios y parabrisas",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Talleres de reparación de neumáticos",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Talleres de mecánica rápida y cambio de aceite",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Concesionarios de automóviles nuevos",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Concesionarios de automóviles usados",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Concesionarios de automóviles de lujo",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Concesionarios de automóviles deportivos",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Concesionarios de automóviles eléctricos o híbridos",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Concesionarios de automóviles de marcas específicas",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Concesionarios de motocicletas y vehículos de dos ruedas",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Concesionarios de vehículos comerciales y de carga",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Concesionarios de repuestos y accesorios para automóviles",
+							"subcategorias": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"nombre": "Hogar y Jardín",
+			"subcategorias": [
+				{ "nombre": "Tiendas de electrodomésticos", "subcategorias": [] },
+				{ "nombre": "Jardines y viveros", "subcategorias": [] },
+				{ "nombre": "Ferreterías", "subcategorias": [] }
+			]
+		},
+		{
+			"nombre": "Deportes y Recreación",
+			"subcategorias": [
+				{
+					"nombre": "Gimnasios y centros deportivos",
+					"subcategorias": [
+						{
+							"nombre": "Gimnasios de entrenamiento general",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Gimnasios especializados en pesas y musculación",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Gimnasios de cardio y aeróbicos",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Centros deportivos con piscinas y actividades acuáticas",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Centros deportivos con canchas de tenis y pádel",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Centros deportivos con canchas de baloncesto y fútbol",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Centros deportivos con pistas de atletismo",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Centros deportivos con clases de yoga y pilates",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Centros deportivos con clases de danza y baile",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Centros deportivos con entrenamientos funcionales",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Centros deportivos con clases de artes marciales",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Centros deportivos con programas de entrenamiento personalizado",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Centros deportivos con actividades al aire libre",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Centros deportivos con programas de acondicionamiento físico para niños",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Centros deportivos con servicios de nutrición y asesoramiento deportivo",
+							"subcategorias": []
+						}
+					]
+				},
+				{
+					"nombre": "Parques de deportes",
+					"subcategorias": [
+						{
+							"nombre": "Parques de deportes con canchas de fútbol",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Parques de deportes con canchas de baloncesto",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Parques de deportes con canchas de tenis",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Parques de deportes con canchas de voleibol",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Parques de deportes con pistas de atletismo",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Parques de deportes con pistas de skate",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Parques de deportes con áreas para practicar ciclismo y bicicletas",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Parques de deportes con campos de béisbol y softbol",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Parques de deportes con campos de golf y minigolf",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Parques de deportes con áreas de ejercicio y entrenamiento al aire libre",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Parques de deportes con áreas para practicar deportes acuáticos",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Parques de deportes con pistas de patinaje y rollerblading",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Parques de deportes con campos de rugby y cricket",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Parques de deportes con canchas de pádel y squash",
+							"subcategorias": []
+						},
+						{
+							"nombre": "Parques de deportes con áreas para practicar deportes de aventura y extremos",
+							"subcategorias": []
+						}
+					]
+				},
+				{ "nombre": "Campos de golf", "subcategorias": [] }
+			]
+		}
+	]
+}

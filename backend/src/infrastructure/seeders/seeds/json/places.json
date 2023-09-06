@@ -1,0 +1,129 @@
+[
+	{
+		"name": "Parque Central",
+		"description": "Un hermoso parque en el centro de la ciudad",
+		"note": "Ideal para pasear y disfrutar de la naturaleza",
+		"url": "parquecentral.com",
+		"phone": "98765432",
+		"domicile": "Avenida Principal, Ciudad Capital, Argentina",
+		"principalCategory": "Parques y jardines",
+
+		"location": {
+			"lat": 41.5,
+			"lng": 64.8
+		},
+		"schedules": [
+			{
+				"dayOfWeek": {
+					"name": "SABADO"
+				},
+				"openingHour": "08:00",
+				"closingHour": "18:00"
+			},
+			{
+				"dayOfWeek": {
+					"name": "DOMINGO"
+				},
+				"openingHour": "09:00",
+				"closingHour": "17:00"
+			}
+		],
+		"services": [
+			{ "name": "WiFi Gratuito" },
+			{ "name": "Estacionamiento Gratuito" }
+		],
+		"accessibilities": [
+			{ "name": "Rampas de Acceso" },
+			{ "name": "Accesible en Silla de Ruedas" }
+		],
+		"minors": "APTA TODO PÚBLICO",
+		"organization": { "legalName": "Organización A" }
+	},
+	{
+		"name": "Cafetería Acogedora",
+		"description": "Un lugar acogedor para tomar café y relajarse",
+		"note": "Ofrecemos una amplia variedad de bebidas y repostería",
+		"url": "cafeteriaacogedora.com",
+		"phone": "55555555",
+		"domicile": "Calle de los Sabores 789, Ciudad Acogedora, Argentina",
+		"principalCategory": "Cafeterías y bares de café",
+		"location": {
+			"lat": 43.0,
+			"lng": 66.5
+		},
+		"schedules": [
+			{
+				"dayOfWeek": {
+					"name": "LUNES"
+				},
+				"openingHour": "07:30",
+				"closingHour": "18:00"
+			},
+			{
+				"dayOfWeek": {
+					"name": "MIERCOLES"
+				},
+				"openingHour": "07:30",
+				"closingHour": "18:00"
+			},
+			{
+				"dayOfWeek": {
+					"name": "VIERNES"
+				},
+				"openingHour": "07:30",
+				"closingHour": "20:00"
+			}
+		],
+		"services": [{ "name": "Recepción 24 Horas" }],
+		"accessibilities": [
+			{ "name": "Señalización en Braille" },
+			{ "name": "Estacionamiento para Discapacitados" }
+		],
+		"minors": "APTA TODO PÚBLICO"
+	},
+	{
+		"name": "Museo Histórico",
+		"description": "Explora la historia y la cultura en nuestro museo",
+		"note": "Una experiencia educativa y enriquecedora",
+		"url": "museohistorico.com",
+		"phone": "11112222",
+		"domicile": "Plaza de la Cultura 123, Ciudad Histórica, Argentina",
+		"principalCategory": "Museos de historia",
+		"location": {
+			"lat": 40.8,
+			"lng": 63.9
+		},
+		"schedules": [
+			{
+				"dayOfWeek": {
+					"name": "MARTES"
+				},
+				"openingHour": "10:00",
+				"closingHour": "17:00"
+			},
+			{
+				"dayOfWeek": {
+					"name": "JUEVES"
+				},
+				"openingHour": "10:00",
+				"closingHour": "17:00"
+			},
+			{
+				"dayOfWeek": {
+					"name": "SABADO"
+				},
+				"openingHour": "10:00",
+				"closingHour": "13:00"
+			}
+		],
+		"services": [
+			{ "name": "Recepción 24 Horas" },
+			{ "name": "Restaurante en el Hotel" }
+		],
+		"accessibilities": [
+			{ "name": "Ascensor Disponible" },
+			{ "name": "Señalización en Braille" }
+		],
+		"minors": "+13"
+	}
+]

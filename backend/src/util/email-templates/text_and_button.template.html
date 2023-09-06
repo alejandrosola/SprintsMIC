@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .divider {
+            border-top: 1px solid #bbb;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3AAEE0;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 400;
+            font-size: 14px;
+        }
+
+        .footer {
+            color: #7e7e7e;
+            font-size: 14px;
+            line-height: 1.2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="section">
+            <h1>{{title}}</h1>
+        </div>
+        <div class="divider"></div>
+        <div class="section">
+            <p>{{body}}</p>
+        </div>
+        <div class="divider"></div>
+        <div class="section">
+            <a class="button" href="{{buttonLink}}" target="_blank">{{buttonText}}</a>
+        </div>
+        <div class="divider"></div>
+        <div class="section footer">
+            <p>{{footer}}</p>
+        </div>
+    </div>
+</body>
+</html>

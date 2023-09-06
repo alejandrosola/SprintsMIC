@@ -1,0 +1,23 @@
+[
+	{
+		"email": "admin@admin.com",
+		"name": "admin",
+		"password": "test",
+		"status": "ACTIVE",
+		"roles": ["CONSUMIDOR", "PRODUCTOR"]
+	},
+	{
+		"email": "example@example.com",
+		"name": "example",
+		"password": "example",
+		"status": "PENDING",
+		"roles": ["CONSUMIDOR"]
+	},
+	{
+		"email": "lautaroverdii@gmail.com",
+		"name": "Lautaro",
+		"password": "test",
+		"status": "ACTIVE",
+		"roles": ["CONSUMIDOR"]
+	}
+]

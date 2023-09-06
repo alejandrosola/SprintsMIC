@@ -1,0 +1,34 @@
+{
+	"info": {
+		"_postman_id": "2f5cfc13-493d-40d3-bd15-790c54514618",
+		"name": "MIC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28785071",
+		"_collection_link": "https://warped-trinity-594312.postman.co/workspace/My-Workspace~ae696683-a3a1-4ab1-89eb-385f77db9b38/collection/28785071-2f5cfc13-493d-40d3-bd15-790c54514618?action=share&creator=28785071&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Get holis",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000",
+					"host": [
+						"localhost"
+					],
+					"port": "3000"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "new",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
