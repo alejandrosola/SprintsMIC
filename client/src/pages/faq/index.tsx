@@ -5,10 +5,12 @@ import BasicLayout from '@/layouts/BasicLayout';
 import { useRouter } from 'next/router';
 import MainLayout from '@/layouts/MainLayout';
 import { Faq } from '@/features/Faqs/faq';
+import LoadingSpinner from '@/components/Loading/Loading';
 
 const FaqPage = () => {
 	const [list, setList] = useState([]);
 	const router = useRouter();
+	const [isLoading, setIsLoading] = useState(true);
 
 	const buttonLabels: Record<string, string> = {
 		'/register': 'Registrarse',
@@ -40,17 +42,25 @@ const FaqPage = () => {
 				</div>
 			));
 			setList(faqList);
+			setIsLoading(false);
 		}
 
 		fetchFaqData();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
 		<div>
 			<MainLayout>
-				<BasicLayout title='Preguntas frecuentes'>
-					<div>{list}</div>
-				</BasicLayout>
+				{isLoading ? (
+					<LoadingSpinner />
+				) : (
+					<>
+						<BasicLayout title='Preguntas frecuentes'>
+							<div>{list}</div>
+						</BasicLayout>
+					</>
+				)}
 			</MainLayout>
 		</div>
 	);

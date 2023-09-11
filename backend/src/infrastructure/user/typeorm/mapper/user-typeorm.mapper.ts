@@ -3,7 +3,7 @@ import { User as DomainUser } from '../../../../domain/user/model/user.entity';
 
 export class UserMapper {
     static toDomain(user: TypeORMUser): DomainUser {
-        return {
+        const aUser = {
             id: user.id,
             name: user.name || null,
             fechaNacimiento: user.fechaNacimiento || null,
@@ -16,6 +16,7 @@ export class UserMapper {
             updatedAt: user.updatedAt,
             deletedAt: user.deletedAt || null,
         };
+        return aUser;
     }
 
     static toTypeORM(domainUser: DomainUser): TypeORMUser {

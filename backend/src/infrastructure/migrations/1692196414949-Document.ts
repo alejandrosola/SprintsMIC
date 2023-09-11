@@ -22,6 +22,10 @@ export class Document1692196414949 implements MigrationInterface {
                         type: 'varchar',
                     },
                     {
+                        name: 'description',
+                        type: 'varchar',
+                    },
+                    {
                         name: 'organization',
                         type: 'uuid',
                         isNullable: true,

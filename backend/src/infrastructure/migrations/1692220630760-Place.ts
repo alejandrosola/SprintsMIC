@@ -37,6 +37,21 @@ export class Place1692220630760 implements MigrationInterface {
 						isNullable: true,
 					},
 					{
+						name: 'facebook_url',
+						type: 'varchar',
+						isNullable: true,
+					},
+					{
+						name: 'twitter_url',
+						type: 'varchar',
+						isNullable: true,
+					},
+										{
+						name: 'instagram_url',
+						type: 'varchar',
+						isNullable: true,
+					},
+					{
 						name: 'phone',
 						type: 'varchar',
 						isNullable: true,

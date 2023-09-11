@@ -8,6 +8,7 @@ export class UserRestMapper {
 			id: user.id,
 			name: user.name,
 			fechaNacimiento: user.fechaNacimiento,
+			roles: user.roles,
 			email: user.email,
 			status: user.status,
 			avatar: user.avatar

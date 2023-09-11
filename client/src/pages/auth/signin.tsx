@@ -52,7 +52,7 @@ const Login = () => {
 		const { email, password } = values;
 		console.log(email);
 		console.log(password);
-		const sign = await signIn('credentials', {
+		await signIn('credentials', {
 			callbackUrl: '/home',
 			email,
 			password,
@@ -97,7 +97,7 @@ const Login = () => {
 	];
 	return (
 		<MainLayout>
-			<BasicLayout title={ t.signin }>
+			<BasicLayout title={t.signin}>
 				{showInfo && error && (
 					<Alert
 						label={error.message}
@@ -116,7 +116,7 @@ const Login = () => {
 					validationSchema={validationSchema}
 					fields={fields}
 					onSubmit={handleButtonClick}
-					buttonLabel= { t.signin }
+					buttonLabel={t.signin}
 				/>
 				<br />
 				<Label text={'ó'} />

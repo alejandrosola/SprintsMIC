@@ -1,45 +1,51 @@
-import { Place as TypeORMPlace } from '../model/place.entity';
 import { Place as DomainPlace } from '../../../../domain/place/model/place.entity';
+import { Place as TypeORMPlace } from '../model/place.entity';
 
-import { PlacePhoto as TypeORMPlacePhoto } from '../model/place-photo.entity';
 import { PlacePhoto as DomainPlacePhoto } from '../../../../domain/place/model/place-photo.entity';
+import { PlacePhoto as TypeORMPlacePhoto } from '../model/place-photo.entity';
 
+import { Category as DomainCategory } from 'src/domain/category/model/category.entity';
+import { Accessibility as DomainAccessibility } from 'src/domain/place/model/accesibility.entity';
+import { PlaceCategory as DomainPlaceCategory } from 'src/domain/place/model/place-category.entity';
+import { PlaceSchedule as DomainPlaceSchedule } from 'src/domain/place/model/place-schedule.entity';
+import { Service as DomainService } from 'src/domain/place/model/service.entity';
+import { Category as TypeORMCategory } from 'src/infrastructure/category/typeorm/model/category.entity';
+import { Accessibility as TypeORMAccessibility } from 'src/infrastructure/place/typeorm/model/accesibility.entity';
+import { Service as TypeORMService } from 'src/infrastructure/place/typeorm/model/service.entity';
 import { DayOfWeek as DomainDayOfWeek } from '../../../../domain/place/model/day-of-week.entity';
 import { DayOfWeek as TypeORMDayOfWeek } from '../model/day-of-week.entity';
-import { PlaceSchedule as DomainPlaceSchedule } from 'src/domain/place/model/place-schedule.entity';
-import { PlaceSchedule as TypeORMPlaceSchedule } from '../model/place-schedule.entity';
-import { PlaceCategory as DomainPlaceCategory } from 'src/domain/place/model/place-category.entity';
 import { PlaceCategory as TypeORMPlaceCategory } from '../model/place-category.entity';
-import { Category as DomainCategory } from 'src/domain/category/model/category.entity';
-import { Category as TypeORMCategory } from 'src/infrastructure/category/typeorm/model/category.entity';
-import { Accessibility as DomainAccessibility } from 'src/domain/place/model/accesibility.entity';
-import { Accessibility as TypeORMAccessibility } from 'src/infrastructure/place/typeorm/model/accesibility.entity';
-import { Service as DomainService } from 'src/domain/place/model/service.entity';
-import { Service as TypeORMService } from 'src/infrastructure/place/typeorm/model/service.entity';
+import { PlaceSchedule as TypeORMPlaceSchedule } from '../model/place-schedule.entity';
+import { CategoryMapper } from 'src/infrastructure/category/typeorm/mapper/category.typeorm.mapper';
 
 export class PlaceMapper {
 	static toDomain(place: TypeORMPlace): DomainPlace {
 		return {
 			id: place.id,
-			name: place.name || null,
-			description: place.description || null,
-			note: place.note || null,
+			name: place.name || '',
+			description: place.description || '',
+			note: place.note || '',
 			schedules: place.schedules
 				? place.schedules.map((schedule) => this.scheduleToDomain(schedule))
 				: [],
 			photos: place.photos
 				? place.photos.map((photo) => this.photoToDomain(photo))
 				: [],
-			principalCategory: place.principalCategory || null,
+			principalCategory: place.principalCategory
+				? place.principalCategory
+				: null,
 			categories: place.categories
 				? place.categories.map((category) =>
 					this.placeCategoryToDomain(category)
 				)
 				: [],
-			url: place.url || null,
-			phone: place.phone || null,
-			domicile: place.domicile || null,
-			origin: place.origin || null,
+			url: place.url || '',
+			facebook_url: place.facebook_url || '',
+			twitter_url: place.twitter_url || '',
+			instagram_url: place.instagram_url || '',
+			phone: place.phone || '',
+			domicile: place.domicile || '',
+			origin: place.origin || '',
 			location: {
 				lat: place.location?.coordinates[0] || null,
 				lng: place.location?.coordinates[1] || null,
@@ -61,9 +67,9 @@ export class PlaceMapper {
 	static toTypeORM(domainPlace: DomainPlace): TypeORMPlace {
 		const typeORMPlace = new TypeORMPlace();
 		typeORMPlace.id = domainPlace.id;
-		typeORMPlace.name = domainPlace.name || null;
-		typeORMPlace.description = domainPlace.description || null;
-		typeORMPlace.note = domainPlace.note || null;
+		typeORMPlace.name = domainPlace.name || '';
+		typeORMPlace.description = domainPlace.description || '';
+		typeORMPlace.note = domainPlace.note || '';
 		typeORMPlace.schedules = domainPlace.schedules
 			? domainPlace.schedules.map((schedule) =>
 				this.scheduleToTypeORM(schedule)
@@ -77,10 +83,13 @@ export class PlaceMapper {
 				this.placeCategoryToTypeORM(category)
 			)
 			: [];
-		typeORMPlace.url = domainPlace.url || null;
-		typeORMPlace.phone = domainPlace.phone || null;
-		typeORMPlace.domicile = domainPlace.domicile || null;
-		typeORMPlace.origin = domainPlace.origin || null;
+		typeORMPlace.url = domainPlace.url || '';
+		typeORMPlace.facebook_url = domainPlace.facebook_url || '',
+			typeORMPlace.twitter_url = domainPlace.twitter_url || '',
+			typeORMPlace.instagram_url = domainPlace.instagram_url || '',
+			typeORMPlace.phone = domainPlace.phone || '';
+		typeORMPlace.domicile = domainPlace.domicile || '';
+		typeORMPlace.origin = domainPlace.origin || '';
 		typeORMPlace.location = {
 			type: 'Point',
 			coordinates: [
@@ -88,7 +97,7 @@ export class PlaceMapper {
 				domainPlace.location?.lng || 0,
 			],
 		};
-		typeORMPlace.minors = domainPlace.minors;
+		typeORMPlace.minors = domainPlace.minors || '';
 		typeORMPlace.organization = domainPlace.organization || null;
 		typeORMPlace.accessibilities = domainPlace.accessibilities
 			? domainPlace.accessibilities.map((accesibility) =>
@@ -98,8 +107,6 @@ export class PlaceMapper {
 		typeORMPlace.services = domainPlace.services
 			? domainPlace.services.map((service) => this.serviceToTypeORM(service))
 			: [];
-		// Aquí puedes mapear las propiedades adicionales según necesites
-
 		return typeORMPlace;
 	}
 
@@ -160,7 +167,7 @@ export class PlaceMapper {
 	private static placeCategoryToTypeORM(placeCategory: DomainPlaceCategory) {
 		const typeORMCategory = new TypeORMPlaceCategory();
 		typeORMCategory.id = placeCategory.id;
-		typeORMCategory.category = this.categoryToTypeORM(placeCategory.category);
+		typeORMCategory.category = CategoryMapper.toTypeORM(placeCategory.category);
 
 		return typeORMCategory;
 	}
@@ -168,7 +175,7 @@ export class PlaceMapper {
 	private static placeCategoryToDomain(placeCategory: TypeORMPlaceCategory) {
 		const placeCategoryDomain = new DomainPlaceCategory();
 		placeCategoryDomain.id = placeCategory.id;
-		placeCategoryDomain.category = this.categoryToDomain(
+		placeCategoryDomain.category = CategoryMapper.toDomain(
 			placeCategory.category
 		);
 		return placeCategoryDomain;

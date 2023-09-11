@@ -1,13 +1,13 @@
+import { MulterFile } from 'multer';
 import { Category } from 'src/domain/category/model/category.entity';
+import { Organization } from 'src/domain/organization/model/organization.entity';
+import { Accessibility } from '../model/accesibility.entity';
+import { PlaceCategory } from '../model/place-category.entity';
+import { Location } from '../model/place-location';
+import { PlacePhoto } from '../model/place-photo.entity';
 import { PlaceSchedule } from '../model/place-schedule.entity';
 import { Place } from '../model/place.entity';
-import { Location } from '../model/place-location';
-import { PlaceCategory } from '../model/place-category.entity';
-import { Accessibility } from '../model/accesibility.entity';
 import { Service } from '../model/service.entity';
-import { Organization } from 'src/domain/organization/model/organization.entity';
-import { MulterFile } from 'multer';
-import { PlacePhoto } from '../model/place-photo.entity';
 
 export interface IUpdatePlace {
 	update(
@@ -18,7 +18,7 @@ export interface IUpdatePlace {
 		schedules: PlaceSchedule[],
 		photos: PlacePhoto[],
 		principalCategory: Category,
-		// categories: PlaceCategory[],
+		categories: PlaceCategory[],
 		url: string,
 		phone: string,
 		domicile: string,
@@ -28,5 +28,8 @@ export interface IUpdatePlace {
 		services: Service[],
 		organization: Organization,
 		files: MulterFile[],
+		facebook_url: string,
+		twitter_url: string,
+		instagram_url: string,
 	): Promise<Place>;
 }

@@ -20,6 +20,9 @@ export class PlaceRestMapper {
             services: place.services,
             minors: place.minors,
             organization: place.organization,
+            facebook_url: place.facebook_url,
+            twitter_url: place.twitter_url,
+            instagram_url: place.instagram_url,
         };
     }
 }

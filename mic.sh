@@ -3,6 +3,7 @@
 root="$(pwd)"
 port_backend=8000
 port_client=3000
+port_client_backoffice=3001
 # Evaluo el comando entrante
 case "$1" in
 
@@ -10,8 +11,14 @@ case "$1" in
         echo "Instalando dependencias del backend..."
         cd $root/backend
         npm i
+        
         echo "Instalando dependencias del client..."
-        cd $root/client
+        cd $root/clientgit
+        npm i
+
+        echo "Instalando dependencias del client backoffice..."
+        cd $root/client-backoffice
+        npm i
         ;;
 
     update)
@@ -31,8 +38,14 @@ case "$1" in
         cd $root/backend
         npm run build
         forever start dist/src/main.js
-        echo "Levantando client en puerto: $port_client..."
+
+        echo "Levantando Client en puerto: $port_client..."
         cd $root/client
+        npm run build
+        forever start -c "npm start" ./
+
+        echo "Levantando Client Backoffice en puerto: $port_client_backoffice..."
+        cd $root/client-backoffice
         npm run build
         forever start -c "npm start" ./
         ;;
@@ -44,6 +57,7 @@ case "$1" in
     stop)
         echo "Bajando backend..."
         echo "Bajando client..."
+        echo "Bajando client backoffice..."
         forever stopall
         ;;
 

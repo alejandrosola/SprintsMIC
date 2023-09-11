@@ -9,7 +9,7 @@ import { IDocumentRepository } from 'src/domain/organization/port/IDocumentRepos
 import { DocumentRepository } from 'src/infrastructure/organization/typeorm/repository/document.repository';
 
 import { CreateOrganization } from 'src/domain/organization/case/createOrganization.case';
-import { UpdateOrganization } from 'src/domain/organization/case/updateOrgranization.case';
+import { UpdateOrganization } from 'src/domain/organization/case/updateOrganization.case';
 import { UpdateTakeOrganization } from 'src/domain/organization/case/updateTakeOrgranization.case';
 import { UpdateDropOrganization } from 'src/domain/organization/case/updateDropOrgranization.case';
 import { UpdateStatusOrganization } from 'src/domain/organization/case/updateStatusOrgranization.case';
@@ -17,9 +17,15 @@ import { UpdateStatusOrganization } from 'src/domain/organization/case/updateSta
 import { FindByIdOrganization } from 'src/domain/organization/case/findByIdOrganizations.case';
 import { FindAllOrganization } from 'src/domain/organization/case/findAllOrganizations.case';
 import { CreateDocument } from 'src/domain/organization/case/createDocument.case';
+import { FindByOwnerOrganization } from 'src/domain/organization/case/findByOwnerOrganization.case';
+import { FindByOperatorOrganization } from 'src/domain/organization/case/findByOperatorOrganization.case';
+import { DeleteOrganization } from 'src/domain/organization/case/deleteOrganization.case';
 
 @Module({
-	imports: [TypeOrmModule.forFeature([Organization]), TypeOrmModule.forFeature([Document])],
+	imports: [
+		TypeOrmModule.forFeature([Organization]),
+		TypeOrmModule.forFeature([Document]),
+	],
 	controllers: [OrganizationController],
 	providers: [
 		CreateOrganization,
@@ -29,7 +35,10 @@ import { CreateDocument } from 'src/domain/organization/case/createDocument.case
 		UpdateStatusOrganization,
 		FindByIdOrganization,
 		FindAllOrganization,
+		FindByOwnerOrganization,
+		FindByOperatorOrganization,
 		CreateDocument,
+		DeleteOrganization,
 		{
 			provide: IOrganizationRepository,
 			useClass: OrganizationRepository,
@@ -40,4 +49,4 @@ import { CreateDocument } from 'src/domain/organization/case/createDocument.case
 		},
 	],
 })
-export class OrganizationModule { }
+export class OrganizationModule {}

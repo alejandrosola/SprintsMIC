@@ -9,16 +9,16 @@ export const getServerSideProps = async (
 	context: GetSessionParams | undefined
 ) => {
 	const session = await getSession(context);
-	if (!session)
-		return {
-			redirect: {
-				destination: '/api/auth/signin',
-				permanent: false,
-			},
-			props: {
-				csrfToken: await getCsrfToken(context),
-			},
-		};
+	// if (!session)
+	// 	return {
+	// 		redirect: {
+	// 			destination: '/api/auth/signin',
+	// 			permanent: false,
+	// 		},
+	// 		props: {
+	// 			csrfToken: await getCsrfToken(context),
+	// 		},
+	// 	};
 
 	return {
 		props: {

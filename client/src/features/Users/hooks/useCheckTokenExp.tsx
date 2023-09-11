@@ -2,7 +2,7 @@ import jwtDecode from "jwt-decode";
 
 const checkTokenExpiration = (aToken: any): string => {
     let isExpired;
-    let tkDecoded: any = jwtDecode(aToken);
+    const tkDecoded: any = jwtDecode(aToken);
     const currentTime = Math.floor(Date.now() / 1000);
 
     if (tkDecoded.exp < currentTime) {
@@ -15,6 +15,7 @@ const checkTokenExpiration = (aToken: any): string => {
     return isExpired;
 }
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
     checkTokenExpiration,
 };

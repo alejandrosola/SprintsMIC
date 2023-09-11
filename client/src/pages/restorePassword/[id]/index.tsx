@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 
 import * as Yup from "yup";
-import { useTheme } from "@mui/material";
 
 import { useRouter } from 'next/router';
 import useCheckTokenExp from "@/features/Users/hooks/useCheckTokenExp";
@@ -15,7 +14,6 @@ import GenericForm from "@/components/Form/ValidationForm";
 import PasswordInput from "@/components/Input/PasswordInput";
 
 const Restore = () => {
-    const theme = useTheme();
 
     const [userEmail, setUserEmail] = useState("");
 
@@ -40,7 +38,7 @@ const Restore = () => {
     }, [id]);
 
     const isTokenExpired = () => {
-        let userData = useCheckTokenExp.checkTokenExpiration(id);
+        const userData = useCheckTokenExp.checkTokenExpiration(id);
         setUserEmail(userData);
         if (userData === "") {
             setInfo({ message: "Tiempo expirado: Usted contaba con 24hs para realizar el cambio de contraseña, para reestablecer su clave debe volver a solicitarlo.", type: 'error' });
@@ -52,7 +50,7 @@ const Restore = () => {
     }
 
     const getData = async () => {
-        let aTokenComplete = (await useGetPasswordToken.getTokenData(id)).data;
+        const aTokenComplete = (await useGetPasswordToken.getTokenData(id)).data;
         if (aTokenComplete.status === "invalido") {
             setInfo({ message: "Error: Este link ya fue utilizado, en caso de querer cambiar la contraseña nuevamente debe volver a solicitarlo.", type: 'error' });
             setIsError(true);
@@ -84,9 +82,10 @@ const Restore = () => {
     });
 
 
-    const handleFormSubmit = async (values: Record<string, any>, actions: any) => {
+    const handleFormSubmit = async (values: Record<string, any>) => {
         let response;
         try {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             response = await useRestorePasswordQuery.restorePassword(
                 userEmail,
                 values.password,

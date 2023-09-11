@@ -1,24 +1,24 @@
 [
 	{
+		"name": "WiFi"
+	},
+	{
 		"name": "WiFi Gratuito"
 	},
 	{
-		"name": "Desayuno Incluido"
+		"name": "Sanitarios"
 	},
 	{
 		"name": "Servicio de Habitación"
 	},
 	{
-		"name": "Piscina al Aire Libre"
+		"name": "Piscina"
 	},
 	{
 		"name": "Gimnasio"
 	},
 	{
-		"name": "Estacionamiento Gratuito"
-	},
-	{
-		"name": "Recepción 24 Horas"
+		"name": "Estacionamiento"
 	},
 	{
 		"name": "Restaurante en el Hotel"
@@ -28,5 +28,17 @@
 	},
 	{
 		"name": "Servicio de Lavandería"
-	}
+	},
+	{ "name": "Retiros en la puerta" },
+	{ "name": "Entrega a domicilio" },
+	{ "name": "Comer en el lugar" },
+	{ "name": "Reservable" },
+	{ "name": "Sirve cerveza" },
+	{ "name": "Sirve desayuno" },
+	{ "name": "Sirve brunch" },
+	{ "name": "Sirve cena" },
+	{ "name": "Sirve almuerzo" },
+	{ "name": "Sirve comida vegetariana" },
+	{ "name": "Sirve vino" },
+	{ "name": "Para llevar" }
 ]

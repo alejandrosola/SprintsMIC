@@ -3,6 +3,7 @@ import {
 	AppBar,
 	Box,
 	Drawer,
+	Link,
 	List,
 	ListItem,
 	ListItemText,
@@ -39,25 +40,30 @@ const initialPerfilRoutes: Route[] = [
 	// ... otras rutas
 ];
 
+// Define el tipo para las traducciones
+type Translation = {
+	[key: string]: string;
+};
+
 const Navbar: React.FC = () => {
 	const { data: session } = useSession();
 	const theme = useTheme(); // Obtiene el objeto theme
 	const router = useRouter();
 	const { locale } = router;
-	const t = locale === 'en' ? en : es;
-	
+	const t: Translation = locale === 'en' ? en : es;
 
 	const [userData, setUserData] = useState<User | null>(null);
 	const [allowedNavBarRoutes, setAllowedNavBarRoutes] =
-		useState<Route[]>(initialPerfilRoutes);
+		useState<any[]>(initialPerfilRoutes);
 	const [allowedPerfilRoutes, setAllowedPerfilRoutes] =
-		useState<Route[]>(initialPerfilRoutes);
+		useState<any[]>(initialPerfilRoutes);
 
 	const [menuOpen, setMenuOpen] = useState(false);
 
 	useEffect(() => {
 		getUserInfo(session?.user?.email);
 		getUserAllowedRoutes();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [session]);
 
 	const getUserInfo = async (email: string | null | undefined) => {
@@ -70,7 +76,7 @@ const Navbar: React.FC = () => {
 	};
 
 	const getUserAllowedRoutes = () => {
-		const filteredNavBarRoutes: Route[] = Routes.filter((route: any) => {
+		const filteredNavBarRoutes = Routes.filter((route: any) => {
 			if (route.visible !== RoutesVisibility.NAVBAR) {
 				return false;
 			}
@@ -83,7 +89,7 @@ const Navbar: React.FC = () => {
 			return route.requireLogin === LoggedRequire.NO;
 		});
 
-		const filteredPerfilRoutes: Route[] = Routes.filter((route: any) => {
+		const filteredPerfilRoutes = Routes.filter((route: any) => {
 			if (route.visible !== RoutesVisibility.PERFIL) {
 				return false;
 			}
@@ -116,24 +122,29 @@ const Navbar: React.FC = () => {
 						backgroundColor: 'white', //#dfcae0
 					}}
 				>
-					<Logo color={LogoColor.DIGITAL_PHRASE} width={280} />
-
+					<Link onClick={() => router.push('/home')}>
+						<Logo color={LogoColor.DIGITAL_PHRASE} width={280} />
+					</Link>
 					{/* Box de Menu de computadora */}
 					<Box
 						sx={{
-							display: { xs: 'none', md: 'flex' }, // Se muestra en md y mayores
+							display: {
+								xs: 'none',
+								md: 'flex',
+								gap: '10px',
+							}, // Se muestra en md y mayores
 						}}
 					>
-						{allowedNavBarRoutes?.map((page: any, index: number) => (
+						{allowedNavBarRoutes?.map((page: Route, index: number) => (
 							<Button
 								key={index}
 								onClick={() => router.push(page.path)}
 								sx={{ marginLeft: '10px' }}
 							>
-							{t[ page.name ]}
+								{t[page.name]}
 							</Button>
 						))}
-						<LanguageDropdown/>
+						<LanguageDropdown />
 						{userData && (
 							<AvatarMenu
 								userData={userData!}
@@ -173,7 +184,7 @@ const Navbar: React.FC = () => {
 						<Logo color={LogoColor.DIGITAL} width={100} />
 					</div>
 					<List>
-						{allowedNavBarRoutes?.map((page: any, index: number) => (
+						{allowedNavBarRoutes?.map((page: Route, index: number) => (
 							<React.Fragment key={index + 100}>
 								<ListItem button onClick={() => router.push(page.path)}>
 									<ListItemText
@@ -184,7 +195,7 @@ const Navbar: React.FC = () => {
 							</React.Fragment>
 						))}
 					</List>
-					<LanguageDropdown/>
+					<LanguageDropdown />
 					{userData && (
 						<AvatarMenu
 							userData={userData!}

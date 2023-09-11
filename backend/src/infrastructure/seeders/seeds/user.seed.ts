@@ -14,12 +14,14 @@ export default class UserSeeder implements Seeder {
         const userRepository = dataSource.getRepository(User);
         const roleRepository = dataSource.getRepository(Role);
 
-        const PRODUCTOR = await roleRepository.findOne({ where: { name: "PRODUCTOR" } });
+        const ADMIN = await roleRepository.findOne({ where: { name: "ADMIN" } });
         const CONSUMIDOR = await roleRepository.findOne({ where: { name: "CONSUMIDOR" } });
+        const GESTION_MIC = await roleRepository.findOne({ where: { name: "GESTION_MIC" } });
 
         const rolesMap = {
-            "PRODUCTOR": PRODUCTOR,
-            "CONSUMIDOR": CONSUMIDOR
+            "ADMIN": ADMIN,
+            "CONSUMIDOR": CONSUMIDOR,
+            "GESTION_MIC": GESTION_MIC
         }
 
         const usersToInsert: User[] = await Promise.all(data.map(async (aUser) => {

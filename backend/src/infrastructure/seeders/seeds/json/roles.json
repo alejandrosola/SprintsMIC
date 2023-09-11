@@ -3,6 +3,9 @@
 		"name": "CONSUMIDOR"
 	},
 	{
-		"name": "PRODUCTOR"
+		"name": "ADMIN"
+	},
+	{
+		"name": "GESTION_MIC"
 	}
 ]

@@ -1,19 +1,19 @@
-import { Injectable, Inject } from '@nestjs/common';
-import { IPlaceRepository } from '../port/iPlaceRepository';
-import { IUpdatePlace } from '../port/iUpdatePlace';
-import { Category } from 'src/domain/category/model/category.entity';
-import { PlaceSchedule } from '../model/place-schedule.entity';
-import { Place } from '../model/place.entity';
-import { Location } from '../model/place-location';
-import { PlaceCategory } from '../model/place-category.entity';
-import { validatePlace } from './validation';
+import { Inject, Injectable } from '@nestjs/common';
 import { MulterFile } from 'multer';
-import { IPhotoRepository } from '../port/iPhotoRepository';
-import { Accessibility } from '../model/accesibility.entity';
-import { Service } from '../model/service.entity';
+import { Category } from 'src/domain/category/model/category.entity';
 import { Organization } from 'src/domain/organization/model/organization.entity';
 import { MinioService } from 'src/util/minio.service';
+import { Accessibility } from '../model/accesibility.entity';
+import { PlaceCategory } from '../model/place-category.entity';
+import { Location } from '../model/place-location';
 import { PlacePhoto } from '../model/place-photo.entity';
+import { PlaceSchedule } from '../model/place-schedule.entity';
+import { Place } from '../model/place.entity';
+import { Service } from '../model/service.entity';
+import { IPhotoRepository } from '../port/iPhotoRepository';
+import { IPlaceRepository } from '../port/iPlaceRepository';
+import { IUpdatePlace } from '../port/iUpdatePlace';
+import { validatePlace } from './validation';
 
 const Minio = new MinioService();
 
@@ -33,7 +33,7 @@ export class UpdatePlace implements IUpdatePlace {
 		schedules: PlaceSchedule[],
 		photos: PlacePhoto[],
 		principalCategory: Category,
-		// categories: PlaceCategory[],
+		categories: PlaceCategory[],
 		url: string,
 		phone: string,
 		domicile: string,
@@ -43,6 +43,9 @@ export class UpdatePlace implements IUpdatePlace {
 		services: Service[],
 		organization: Organization,
 		files: MulterFile[],
+		facebook_url: string,
+		twitter_url: string,
+		instagram_url: string,
 	): Promise<Place> {
 		const aPlace = new Place();
 		aPlace.id = id;
@@ -52,7 +55,7 @@ export class UpdatePlace implements IUpdatePlace {
 		aPlace.schedules = schedules;
 		aPlace.photos = photos;
 		aPlace.principalCategory = principalCategory;
-		// aPlace.categories = categories;
+		aPlace.categories = categories;
 		aPlace.url = url;
 		aPlace.phone = phone;
 		aPlace.domicile = domicile;
@@ -61,7 +64,9 @@ export class UpdatePlace implements IUpdatePlace {
 		aPlace.accessibilities = accessibilities;
 		aPlace.services = services;
 		aPlace.organization = organization;
-
+		aPlace.facebook_url = facebook_url;
+		aPlace.twitter_url = twitter_url;
+		aPlace.instagram_url = instagram_url;
 		validatePlace(aPlace);
 
 		const aPlaceEntity = await this.placeRepository.update(aPlace);
@@ -80,12 +85,16 @@ export class UpdatePlace implements IUpdatePlace {
 			await this.photoRepository.create(aFoto, aPlaceEntity);
 		}
 
-		// for (const foto of await Minio.listAllObjects(`place-${aPlaceEntity.id}`)) {
-		// 	if (!photos.find((aFoto) => aFoto.originalname === foto.name)) {
-		// 		console.log(foto);
-		// 		Minio.removeFile(`place-${aPlaceEntity.id}`, foto.name);
-		// 	}
-		// }
+        // for (const foto of await Minio.listAllObjects(`place-${aPlaceEntity.id}`)) {
+		// 	const uri = await Minio.createUR(
+		// 		`place-${aPlaceEntity.id}`,
+		// 		foto.originalname
+		// 	);
+        //     if (!photos.find((aFoto) => aFoto.photoUrl === uri)) {
+        //         console.log(foto);
+        //         Minio.removeFile(`place-${aPlaceEntity.id}`, foto.name);
+        //     }
+        // }
 
 
 

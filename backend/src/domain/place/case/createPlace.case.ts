@@ -1,23 +1,23 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { ICreatePlace } from '../port/iCreatePlace';
 
-import { Category } from 'src/domain/category/model/category.entity';
 import { MulterFile } from 'multer';
+import { Category } from 'src/domain/category/model/category.entity';
+import { MinioService } from '../../../util/minio.service';
+import { Location } from '../model/place-location';
+import { PlacePhoto } from '../model/place-photo.entity';
 import { PlaceSchedule } from '../model/place-schedule.entity';
 import { Place } from '../model/place.entity';
 import { IPlaceRepository } from '../port/iPlaceRepository';
-import { Location } from '../model/place-location';
-import { PlaceCategory } from '../model/place-category.entity';
-import { MinioService } from '../../../util/minio.service';
-import { PlacePhoto } from '../model/place-photo.entity';
 
 const Minio = new MinioService();
 
-import { validatePlace } from './validation';
-import { IPhotoRepository } from '../port/iPhotoRepository';
 import { Organization } from 'src/domain/organization/model/organization.entity';
-import { Service } from '../model/service.entity';
 import { Accessibility } from '../model/accesibility.entity';
+import { PlaceCategory } from '../model/place-category.entity';
+import { Service } from '../model/service.entity';
+import { IPhotoRepository } from '../port/iPhotoRepository';
+import { validatePlace } from './validation';
 @Injectable()
 export class CreatePlace implements ICreatePlace {
 	constructor(
@@ -32,7 +32,7 @@ export class CreatePlace implements ICreatePlace {
 		description: string,
 		note: string,
 		schedules: PlaceSchedule[],
-		photos: MulterFile[],
+		photos: PlacePhoto[],
 		principalCategory: Category,
 		categories: PlaceCategory[],
 		url: string,
@@ -43,7 +43,11 @@ export class CreatePlace implements ICreatePlace {
 		minors: string,
 		accessibilities: Accessibility[],
 		services: Service[],
-		organization: Organization
+		organization: Organization,
+		files: MulterFile[],
+		facebook_url: string,
+		twitter_url: string,
+		instagram_url: string,
 	): Promise<Place> {
 		const aPlace = new Place();
 		aPlace.name = name;
@@ -62,11 +66,15 @@ export class CreatePlace implements ICreatePlace {
 		aPlace.accessibilities = accessibilities;
 		aPlace.services = services;
 		aPlace.organization = organization;
-		validatePlace(aPlace);
+		aPlace.facebook_url = facebook_url;
+		aPlace.twitter_url = twitter_url;
+		aPlace.instagram_url = instagram_url;
 
+		validatePlace(aPlace);
+		aPlace.photos = aPlace.photos.length > 0 ? aPlace.photos : null;
 		const aPlaceEntity = await this.placeRepository.create(aPlace);
 
-		for (const foto of photos) {
+		for (const foto of files) {
 			await Minio.verifyBucket(`place-${aPlaceEntity.id}`, foto);
 
 			const uri = await Minio.createUR(

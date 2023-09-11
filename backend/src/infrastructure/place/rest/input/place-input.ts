@@ -11,7 +11,7 @@ export class PlaceInput {
 	description: string;
 	note: string;
 	schedules: PlaceSchedule[];
-	photos: File[];
+	photos: string;
 	principalCategory: Category;
 	categories: PlaceCategory[];
 	url: string;
@@ -22,4 +22,7 @@ export class PlaceInput {
 	accessibilities: Accessibility[];
 	services: Service[];
 	organization: Organization;
+	facebook_url: string;
+	twitter_url: string;
+	instagram_url: string;
 }

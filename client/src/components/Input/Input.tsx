@@ -13,23 +13,26 @@ interface TextInputProps {
 		type?: 'email' | 'text' | 'number' | 'date';
 		required?: boolean;
 	};
+	id?: string;
 	form?: any;
-	shrink?: boolean; // Agrega la prop shrink
+	shrink?: boolean;
 	// Add more custom props specific to TextInput if needed
 }
 
 const MyInput: React.FC<TextInputProps> = ({
 	field,
-	shrink, // Accede a shrink desde props
+	shrink,
+	id,
 	...props
 }) => {
 	return (
 		<TextField
+			id={id}
 			fullWidth
 			type='text'
 			{...field}
 			{...props}
-			InputLabelProps={{ shrink: shrink }} // Usa shrink desde props
+			InputLabelProps={{ shrink: shrink }}
 		/>
 	);
 };

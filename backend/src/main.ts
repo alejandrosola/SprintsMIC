@@ -7,7 +7,7 @@ async function bootstrap() {
 
 	// Configurar las opciones CORS para permitir solicitudes desde http://localhost:3001
 	const corsOptions: CorsOptions = {
-		origin: process.env.FRONT_URL,
+		origin: [process.env.FRONT_URL, process.env.BACKOFFICE_FRONT_URL],
 		methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
 		allowedHeaders: 'Content-Type,Authorization',
 		exposedHeaders: 'Access-Control-Allow-Origin',

@@ -15,5 +15,6 @@ export interface iCreateOrganization {
 		operators: User[],
 		supportingDocumentation: MulterFile[],
 		validator: User,
+		documentDescription: string[]
 	): Promise<Organization>;
 }

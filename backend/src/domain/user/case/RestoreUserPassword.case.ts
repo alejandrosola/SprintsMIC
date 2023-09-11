@@ -31,9 +31,9 @@ export class RestoreUserPassword implements iRestoreUserPassword {
 
             email = normalizeEmail(email);
 
-            let aUserComplete = await this.userRepository.findByEmail(normalizeEmail(email));
+            const aUserComplete = await this.userRepository.findByEmail(normalizeEmail(email));
 
-            let aPasswordToken = await this.verifyAndGenerateToken(aUserComplete);
+            const aPasswordToken = await this.verifyAndGenerateToken(aUserComplete);
 
             await Email.sendRestorePasswordEmail(email, aPasswordToken.token);
             return aPasswordToken;
@@ -54,7 +54,7 @@ export class RestoreUserPassword implements iRestoreUserPassword {
             //Si existe lo retorno 
             if (aToken !== null) {
                 // Verificar expiración de token
-                let isExpired = await this.checkTokenExpiration(aToken.token);
+                const isExpired = await this.checkTokenExpiration(aToken.token);
                 if (!isExpired) {
                     return aToken;
                 }
@@ -70,7 +70,7 @@ export class RestoreUserPassword implements iRestoreUserPassword {
                 status: 'valido'
             }
 
-            let aPasswordTokenEntity: PasswordToken = await this.passwordTokenRepository.create(aToken);
+            const aPasswordTokenEntity: PasswordToken = await this.passwordTokenRepository.create(aToken);
             return aPasswordTokenEntity;
         } catch (error: any) {
             throw new Error(error);
@@ -88,30 +88,30 @@ export class RestoreUserPassword implements iRestoreUserPassword {
     }
 
     async generatePasswordToken(aEmail: string) {
-        let token = jwt.sign({ email: aEmail }, process.env.JWT_SECRET, {
+        const token = jwt.sign({ email: aEmail }, process.env.JWT_SECRET, {
             expiresIn: process.env.PASSWORDTK_EXPIRATION,
         });
         return token;
     }
 
     async getPasswordTokenData(aToken: string) {
-        let passwordTokenEntity = await this.passwordTokenRepository.findByToken(aToken);
+        const passwordTokenEntity = await this.passwordTokenRepository.findByToken(aToken);
         return passwordTokenEntity;
     }
 
     async restorePassword(aEmail: string, newPassword: string, passwordToken: string): Promise<any> {
         try {
             //Hash password
-            let hashedPassword: string = await bcrypt.hash(
+            const hashedPassword: string = await bcrypt.hash(
                 newPassword,
                 saltRounds
             );
 
             await this.changeTkStatus(passwordToken, 'invalido');
 
-            let aUser: any = await this.userRepository.findByEmail(aEmail);
+            const aUser: any = await this.userRepository.findByEmail(aEmail);
             aUser.password = hashedPassword;
-            let aUserUpdated = await this.userRepository.update(aUser);
+            const aUserUpdated = await this.userRepository.update(aUser);
 
             return aUserUpdated;
         } catch (error: any) {

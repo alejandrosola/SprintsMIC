@@ -18,6 +18,7 @@ import { UserForgotPasswordInput } from '../input/user-forgot.password.input';
 import { RestoreUserPassword } from 'src/domain/user/case/RestoreUserPassword.case';
 import { UserGetPasswordTokenInput } from '../input/user-get-password-token.input';
 import { UserRestorePasswordInput } from '../input/user-restore-password.input';
+import { UserHasPermission } from 'src/domain/user/case/userHasPermission.case';
 
 require('dotenv').config({ path: '.env.local' }); // Esto carga las variables del .env.local
 
@@ -30,7 +31,8 @@ export class UserController {
 		private readonly loginUser: LoginUser,
 		private readonly updateUser: UpdateUser,
 		private readonly updateUserPassword: UpdateUserPassword,
-		private readonly restoreUserPassword: RestoreUserPassword
+		private readonly restoreUserPassword: RestoreUserPassword,
+		private readonly userHasPermission: UserHasPermission
 	) {
 	}
 
@@ -149,7 +151,7 @@ export class UserController {
 		try {
 			// const aUser: User = await this.findUsers.findByEmail(body.email);
 
-			let response = await this.restoreUserPassword.sendPasswordToken(body.email);
+			const response = await this.restoreUserPassword.sendPasswordToken(body.email);
 			return responseJson(
 				200,
 				'Usuarios recuperados con exito',
@@ -163,7 +165,7 @@ export class UserController {
 	@Post('passwordToken')
 	async getPasswordTokenData(@Body() body: UserGetPasswordTokenInput): Promise<UserPayload> {
 		try {
-			let response = await this.restoreUserPassword.getPasswordTokenData(body.token);
+			const response = await this.restoreUserPassword.getPasswordTokenData(body.token);
 			return responseJson(
 				200,
 				'Token recuperado con exito',
@@ -177,12 +179,27 @@ export class UserController {
 	@Post('resetPassword')
 	async restorePassword(@Body() body: UserRestorePasswordInput): Promise<UserPayload> {
 		try {
-			let response = await this.restoreUserPassword.restorePassword(body.email, body.password, body.token);
+			const response = await this.restoreUserPassword.restorePassword(body.email, body.password, body.token);
 			return responseJson(
 				200,
 				'Token recuperado con exito',
 				response
 				// UserRestMapper.toPayload(aUser)
+			);
+		} catch (error) {
+			return responseJson(500, error.message);
+		}
+	}
+
+	@Post('canAccess')
+	async userCanAccess(@Body() body: any): Promise<UserPayload> {
+		try {
+			const hasPermission = await this.userHasPermission.grantAccess(body.email, body.action, body.resource);
+
+			return responseJson(
+				200,
+				'El usuario cuenta con los permisos',
+				hasPermission
 			);
 		} catch (error) {
 			return responseJson(500, error.message);

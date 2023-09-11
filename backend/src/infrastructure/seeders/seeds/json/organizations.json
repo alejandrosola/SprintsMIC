@@ -1,25 +1,25 @@
 [
 	{
-		"legalName": "Organización A",
-		"address": "Calle Principal 123",
-		"cuit": "12345678901",
-		"phone": "123-456-7890",
+		"legalName": "CAMAD",
+		"address": "Gob. Galina y Paulina Escardó",
+		"cuit": "30111111113",
+		"phone": "2805060424",
 		"status": "IN_REVIEW",
 		"owned": {
-			"email": "example@example.com"
+			"email": "admin@admin.com"
 		},
 		"validator": {
-			"email": "admin@admin.com"
+			"email": "markeljaureguibehere@hotmail.com.ar"
 		}
 	},
 	{
-		"legalName": "Organización B",
-		"address": "Calle Principal 456",
-		"cuit": "10987654321",
-		"phone": "098-765-4321",
+		"legalName": "Ecocentro",
+		"address": "Julio Verne 3784",
+		"cuit": "30222222223",
+		"phone": "02804883176",
 		"status": "PENDING",
 		"owned": {
-			"email": "example@example.com"
+			"email": "admin@admin.com"
 		}
 	}
 ]

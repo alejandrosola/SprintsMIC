@@ -8,6 +8,7 @@ import { DayOfWeek } from 'src/infrastructure/place/typeorm/model/day-of-week.en
 import { Accessibility } from 'src/infrastructure/place/typeorm/model/accesibility.entity';
 import { Service } from 'src/infrastructure/place/typeorm/model/service.entity';
 import { Organization } from 'src/infrastructure/organization/typeorm/model/organization.entity';
+import { PlaceCategory } from 'src/infrastructure/place/typeorm/model/place-category.entity';
 
 export default class PlaceSeeder implements Seeder {
 	public async run(dataSource: DataSource): Promise<any> {
@@ -16,24 +17,37 @@ export default class PlaceSeeder implements Seeder {
 		const scheduleRepository = dataSource.getRepository(PlaceSchedule);
 		const daysOfWeekRepository = dataSource.getRepository(DayOfWeek);
 		const categoryRepository = dataSource.getRepository(Category);
+		const placeCategoryRepository = dataSource.getRepository(PlaceCategory);
 		const accessibilityRepository = dataSource.getRepository(Accessibility);
 		const serviceRepository = dataSource.getRepository(Service);
 		const organizationRepository = dataSource.getRepository(Organization);
-		const placesSchedulesToInsert: any = [];
 
 		const placesToInsert: Place[] = await Promise.all(
 			data.map(async (aPlace) => {
 				const place = new Place(); // Crear una instancia de User
 				place.name = aPlace.name;
 				place.url = aPlace.url;
+				place.instagram_url = aPlace.instagram_url;
+				place.twitter_url = aPlace.twitter_url;
+				place.facebook_url = aPlace.facebook_url;
 				place.description = aPlace.description;
 				place.domicile = aPlace.domicile;
 				place.phone = aPlace.phone;
 				place.note = aPlace.note;
 				place.origin = 'SEEDER';
-				place.principalCategory = await categoryRepository.findOne({
-					where: { name: aPlace.principalCategory },
-				});
+				if (aPlace.principalCategory) {
+					place.principalCategory = await categoryRepository.findOne({
+						where: { name: aPlace.principalCategory },
+					});
+				}
+				place.categories = await Promise.all(aPlace.categories.map(async (category) => {
+					const categoryy = new PlaceCategory();
+					categoryy.category = await categoryRepository.findOne({
+						where: { name: category }
+					})
+					return categoryy
+				}))
+
 				place.location = {
 					type: 'Point',
 					coordinates: [aPlace.location.lat, aPlace.location.lng],
@@ -65,8 +79,8 @@ export default class PlaceSeeder implements Seeder {
 				);
 				place.organization = aPlace.organization
 					? await organizationRepository.findOne({
-							where: { legalName: aPlace.organization.legalName },
-					  })
+						where: { legalName: aPlace.organization.legalName },
+					})
 					: null;
 				place.minors = aPlace.minors;
 
@@ -77,6 +91,27 @@ export default class PlaceSeeder implements Seeder {
 		const places = placeRepository.create(placesToInsert);
 
 		await placeRepository.save(places);
+
+		for (const aPlace of data) {
+			const place = await placeRepository.findOne({
+				where: { name: aPlace.name },
+			});
+
+			const categories = await Promise.all(
+				aPlace.categories.map(async (aCategory) => {
+					const category = new PlaceCategory();
+					category.category = await categoryRepository.findOne({
+						where: { name: aCategory },
+					});
+					category.place = place; // Asignar el lugar ya guardado
+					return category;
+				})
+			);
+
+			const placesCategories = placeCategoryRepository.create(categories);
+			await placeCategoryRepository.save(placesCategories);
+
+		}
 
 		for (const aPlace of data) {
 			const place = await placeRepository.findOne({

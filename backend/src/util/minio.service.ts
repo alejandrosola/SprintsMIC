@@ -19,7 +19,7 @@ export class MinioService {
 
 	// Verificar si el bucket ya existe antes de crearlo
 	async verifyBucket(bucketName: string, file: MulterFile) {
-		let exists = await this.minioClient.bucketExists(bucketName);
+		const exists = await this.minioClient.bucketExists(bucketName);
 		// if (err) {
 		//     console.error('Error al verificar si el bucket existe:', err);
 		//     return;

@@ -7,6 +7,10 @@ import { Route } from '@/components/Routes';
 import en from '@/locale/en';
 import es from '@/locale/es';
 
+type Translation = {
+	[key: string]: string;
+};
+
 type AvatarMenuProps = {
 	userData: {
 		avatar?: string;
@@ -14,12 +18,13 @@ type AvatarMenuProps = {
 	};
 	routes: Route[];
 };
+
 const AvatarMenu: React.FC<AvatarMenuProps> = ({ userData, routes }) => {
 	const router = useRouter();
 	const [menuAvatarOpen, setMenuAvatarOpen] = useState(false);
 	const avatarRef = useRef<HTMLButtonElement | null>(null);
 	const { locale } = router;
-	const t = locale === 'en' ? en : es;
+	const t: Translation = locale === 'en' ? en : es; // Asegúrate de que 'en' y 'es' estén definidos correctamente
 
 	const handleAvatarClick = () => {
 		setMenuAvatarOpen(true);
@@ -47,7 +52,7 @@ const AvatarMenu: React.FC<AvatarMenuProps> = ({ userData, routes }) => {
 				onClose={handleMenuAvatarClose}
 			>
 				{/* Items del menu */}
-				{routes?.map((page: any, index: number) => (
+				{routes?.map((page: Route, index: number) => (
 					<MenuItem key={index} onClick={() => router.push(page.path)}>
 						{t[page.name]}
 					</MenuItem>

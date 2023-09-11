@@ -16,6 +16,7 @@ import { RestoreUserPassword } from 'src/domain/user/case/RestoreUserPassword.ca
 import { IPasswordTokenRepository } from 'src/domain/user/port/iPasswordTokenRepository';
 import { PasswordTokenRepository } from 'src/infrastructure/user/typeorm/repository/passwordToken.repository';
 import { PasswordToken } from 'src/infrastructure/user/typeorm/model/passwordToken.entity';
+import { UserHasPermission } from 'src/domain/user/case/userHasPermission.case';
 
 @Module({
 	imports: [TypeOrmModule.forFeature([User]), TypeOrmModule.forFeature([Role]), TypeOrmModule.forFeature([PasswordToken])],
@@ -27,6 +28,7 @@ import { PasswordToken } from 'src/infrastructure/user/typeorm/model/passwordTok
 		UpdateUser,
 		UpdateUserPassword,
 		RestoreUserPassword,
+		UserHasPermission,
 		{
 			provide: IUserRepository,
 			useClass: UserRepository,

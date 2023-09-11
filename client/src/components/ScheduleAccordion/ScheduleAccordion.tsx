@@ -1,7 +1,9 @@
 import { PlaceSchedule } from "@/features/PlacesSchedules/place_schedule";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import React from "react";
+import Tag from "../Tag/Tag";
+import Label from "../Label/Label";
 
 type ScheduleAccordionProps = {
   schedules: PlaceSchedule[];
@@ -21,38 +23,43 @@ const ScheduleAccordion: React.FC<ScheduleAccordionProps> = ({ schedules }) => {
   const sortedSchedules = [...schedules].sort((a, b) => a.openingHour.localeCompare(b.openingHour));
 
   return (
-    <Accordion>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <Box sx={{ width: '100%', textAlign: 'center' }}>
-          <Typography>Horarios</Typography>
-        </Box>
+    <Accordion style={{ backgroundColor: "transparent", boxShadow: "none" }} disableGutters>
+      <AccordionSummary expandIcon={<ExpandMoreIcon />} style={{
+        padding: 0,
+      }}>
+        <Tag text="Horarios" />
       </AccordionSummary>
-      <AccordionDetails>
+      <AccordionDetails style={{
+        padding: 0,
+        paddingBottom: 5
+      }}>
         {reorderedDays.map((day, index) => {
           const normalizedDay = normalizeString(day);
-          const schedulesForDay = sortedSchedules.filter(schedule => normalizeString(schedule.dayOfWeek.name) === normalizedDay);
+          const schedulesForDay = sortedSchedules.filter(schedule => normalizeString(schedule.dayOfWeek!.name) === normalizedDay);
+
+          const schedulesText = schedulesForDay.length > 0
+            ? schedulesForDay
+              .map((schedule) => (
+                schedule.openingHour !== "" && schedule.closingHour !== ""
+                  ? `${schedule.openingHour.slice(0, 5)}-${schedule.closingHour.slice(0, 5)}`
+                  : ""
+              ))
+              .filter(Boolean) // Filtramos los valores vacíos
+              .join(" y ") // Unimos los horarios con " y "
+            : "Cerrado";
+
+          const labelText = `${day}: ${schedulesText}`;
 
           return (
-            <Typography key={index}>
-              {day}:{" "}
-              {schedulesForDay.length > 0 ? (
-                schedulesForDay
-                  .map((schedule, index) => (
-                    <React.Fragment key={index}>
-                      {schedule.openingHour !== "" && schedule.closingHour !== ""
-                        ? `${schedule.openingHour.slice(0, 5)}-${schedule.closingHour.slice(0, 5)}`
-                        : ""}
-                      {index < schedulesForDay.length - 1 && " y "}
-                    </React.Fragment>
-                  ))
-              ) : (
-                "Cerrado"
-              )}
-            </Typography>
+            <Label
+              id={"card_description"}
+              text={labelText}
+              key={index}
+            />
           );
         })}
       </AccordionDetails>
-    </Accordion>
+    </Accordion >
   );
 };
 

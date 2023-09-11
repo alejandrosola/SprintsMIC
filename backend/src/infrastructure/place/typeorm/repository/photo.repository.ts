@@ -1,11 +1,11 @@
-import { Repository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { PlacePhoto as TypeORMPlacePhoto } from '../model/place-photo.entity';
 import { PlacePhoto as DomainPlacePhoto } from 'src/domain/place/model/place-photo.entity';
-import { IPhotoRepository } from 'src/domain/place/port/iPhotoRepository';
-import { PhotoMapper } from '../mapper/photo-typeorm.mapper';
 import { Place as DomainPlace } from 'src/domain/place/model/place.entity';
+import { IPhotoRepository } from 'src/domain/place/port/iPhotoRepository';
+import { Repository } from 'typeorm';
+import { PhotoMapper } from '../mapper/photo-typeorm.mapper';
+import { PlacePhoto as TypeORMPlacePhoto } from '../model/place-photo.entity';
 
 @Injectable()
 export class PhotoRepository implements IPhotoRepository {
@@ -21,7 +21,7 @@ export class PhotoRepository implements IPhotoRepository {
 		// aPlace.photos = null
 		const typeORMPhoto = PhotoMapper.toTypeORM(aPhoto, aPlace);
 		const savedPhoto = await this.photoRepository.save(typeORMPhoto);
-
+		console.log("CHAU",typeORMPhoto)
 		return PhotoMapper.toDomain(savedPhoto);
 	}
 

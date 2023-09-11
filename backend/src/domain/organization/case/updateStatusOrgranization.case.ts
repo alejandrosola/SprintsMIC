@@ -4,6 +4,7 @@ import { IOrganizationRepository } from '../port/iOrganizationRepository';
 import { iUpdateStatusOrganization } from '../port/iUpdateStatusOrganization';
 
 import { EmailService } from '../../../util/email.service';
+import { OrganizationStatus } from '../model/status.enum';
 const Email = new EmailService();
 
 @Injectable()
@@ -28,7 +29,10 @@ export class UpdateStatusOrganization implements iUpdateStatusOrganization {
 
         const organizationUpdated = await this.organizationRepository.update(organizationSearched);
         console.log("🚀 ~ file: updateStatusOrgranization.case.ts:30 ~ UpdateStatusOrganization ~ organizationUpdated:", organizationUpdated)
-        await Email.sendInfo(organizationSearched.owner.email, body);
+
+        if (status !== OrganizationStatus.ON_HOLD) {
+            await Email.sendInfo(organizationSearched.owner.email, body);
+        }
 
         return organizationUpdated;
     }

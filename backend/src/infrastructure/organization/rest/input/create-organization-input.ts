@@ -1,5 +1,5 @@
-import { Category } from "src/domain/category/model/category.entity";
-import { User } from "src/domain/user/model/user.entity";
+import { Category } from 'src/domain/category/model/category.entity';
+import { User } from 'src/domain/user/model/user.entity';
 
 export class CreateOrganizationInput {
 	legalName: string;
@@ -21,4 +21,6 @@ export class CreateOrganizationInput {
 	supportingDocumentation: File[];
 
 	validator: User;
+
+	documentDescriptions: string[];
 }

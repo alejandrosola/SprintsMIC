@@ -1,6 +1,6 @@
-import { Category } from "src/domain/category/model/category.entity";
-import { User } from "src/domain/user/model/user.entity";
-import { Document } from "src/domain/organization/model/document.entity";
+import { Document } from 'src/domain/organization/model/document.entity';
+import { UserPayload } from 'src/infrastructure/user/rest/payload/user-payload';
+import { CategoryPayload } from 'src/infrastructure/category/rest/payload/category-payload';
 
 export class OrganizationPayload {
 	id: string;
@@ -11,21 +11,22 @@ export class OrganizationPayload {
 
 	cuit: string;
 
-	categories: Category[];
+	categories: CategoryPayload[];
 
-	subcategories: Category[];
+	subcategories: CategoryPayload[];
 
 	phone: string;
 
-	owner: User;
+	owner: UserPayload;
 
-	operators: User[];
+	operators: UserPayload[];
 
 	supportingDocumentation: Document[];
 
 	status: string;
 
-	validator: User;
+	validator: UserPayload;
 
-	updatedAt: Date
+	updatedAt: Date;
+	createdAt: Date;
 }

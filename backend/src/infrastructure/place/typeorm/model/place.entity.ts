@@ -1,20 +1,20 @@
 import {
 	Column,
 	Entity,
+	JoinTable,
+	ManyToMany,
 	ManyToOne,
 	OneToMany,
 	Point,
-	ManyToMany,
-	JoinTable,
 	PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Category } from '../../../category/typeorm/model/category.entity';
-import { PlaceCategory } from './place-category.entity';
-import { Accessibility } from './accesibility.entity';
-import { Service } from './service.entity';
 import { Organization } from '../../../organization/typeorm/model/organization.entity';
+import { Accessibility } from './accesibility.entity';
+import { PlaceCategory } from './place-category.entity';
 import { PlacePhoto } from './place-photo.entity';
 import { PlaceSchedule } from './place-schedule.entity';
+import { Service } from './service.entity';
 
 @Entity({ name: 'places' })
 export class Place {
@@ -46,6 +46,15 @@ export class Place {
 	@Column({ name: 'url', nullable: true })
 	url: string;
 
+	@Column({ name: 'facebook_url', nullable: true })
+	facebook_url: string;
+
+	@Column({ name: 'twitter_url', nullable: true })
+	twitter_url: string;
+
+	@Column({ name: 'instagram_url', nullable: true })
+	instagram_url: string;
+
 	@Column({ name: 'phone', nullable: true })
 	phone: string;
 
@@ -57,6 +66,7 @@ export class Place {
 		spatialFeatureType: 'Point',
 		name: 'location',
 		nullable: true,
+		srid: 4326,
 	})
 	location: Point;
 

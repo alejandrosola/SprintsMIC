@@ -8,9 +8,14 @@ export class FindByIdOrganization implements IfindByIdOrganization {
 	constructor(
 		@Inject(IOrganizationRepository)
 		private readonly organizacionRepository: IOrganizationRepository
-	) { }
+	) {}
 
 	async findById(id: string): Promise<Organization> {
-		return this.organizacionRepository.findByID(id);
+		const aOrganizationSearched = await this.organizacionRepository.findByID(
+			id
+		);
+
+		if (aOrganizationSearched) return aOrganizationSearched;
+		throw new Error('No existe esa organización');
 	}
 }

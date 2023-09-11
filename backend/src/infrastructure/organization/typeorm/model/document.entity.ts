@@ -16,6 +16,9 @@ export class Document {
     @JoinColumn({ name: 'organization' })
     organization: Organization;
 
+    @Column({ name: 'description', length: 700 })
+    description: string;
+
     @CreateDateColumn({
         type: 'timestamp',
         default: () => 'CURRENT_TIMESTAMP(6)',

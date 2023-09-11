@@ -7,7 +7,9 @@ export class Document {
 
     url: string;
 
-    organization: Organization
+    description: string;
+
+    organization: Organization;
 
     createdAt: Date;
 

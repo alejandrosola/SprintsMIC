@@ -21,9 +21,8 @@ export class CreateOrganization implements iCreateOrganization {
 		@Inject(IOrganizationRepository)
 		private organizationRepository: IOrganizationRepository,
 		@Inject(IDocumentRepository)
-		private documentRepository: IDocumentRepository,
-	) {
-	}
+		private documentRepository: IDocumentRepository
+	) { }
 
 	async create(
 		legalName: string,
@@ -35,39 +34,57 @@ export class CreateOrganization implements iCreateOrganization {
 		owner: User,
 		operators: User[],
 		supportingDocumentation: MulterFile[],
+		validator: User,
+		documentDescription: string[]
 	): Promise<Organization> {
-
 		const aOrganization = new Organization();
-		aOrganization.legalName = legalName
-		aOrganization.address = address
-		aOrganization.cuit = cuit
+		aOrganization.legalName = legalName;
+		aOrganization.address = address;
+		aOrganization.cuit = cuit;
 		aOrganization.categories = categories;
-		aOrganization.subcategories = subcategories
-		aOrganization.phone = phone
-		aOrganization.owner = owner
-		aOrganization.operators = operators
+		aOrganization.subcategories = subcategories;
+		aOrganization.phone = phone;
+		aOrganization.owner = owner;
+		aOrganization.operators = operators;
 		aOrganization.status = OrganizationStatus.PENDING;
 
 		try {
-			const aOrganizationEntity = await this.organizationRepository.create(aOrganization);
+			const aOrganizationEntity = await this.organizationRepository.create(
+				aOrganization
+			);
 
-			for (const doc of supportingDocumentation) {
-				await Minio.verifyBucket(aOrganizationEntity.id, doc);
+			if (supportingDocumentation) {
+				for (const doc of supportingDocumentation) {
+					console.log("🚀 ~ file: createOrganization.case.ts:58 ~ CreateOrganization ~ doc:", doc)
+					await Minio.verifyBucket(aOrganizationEntity.id, doc);
 
-				const uri = await Minio.createUR(aOrganizationEntity.id, doc.originalname);
+					const uri = await Minio.createUR(
+						aOrganizationEntity.id,
+						doc.originalname
+					);
 
-				const aDocument = new Document();
+					const aDocument = new Document();
 
-				aDocument.name = doc.originalname;
-				aDocument.url = uri;
-				aDocument.organization = aOrganizationEntity
+					aDocument.name = doc.originalname;
+					aDocument.url = uri;
+					aDocument.organization = aOrganizationEntity;
 
-				await this.documentRepository.create(aDocument);
+					aDocument.description = JSON.parse(
+						documentDescription.find((aDocDescription: any) => {
+							return JSON.parse(aDocDescription).filename === doc.originalname;
+						})
+					).description;
+
+					await this.documentRepository.create(aDocument);
+				}
 			}
 
 			return aOrganizationEntity;
 		} catch (error) {
-			console.log("🚀 ~ file: createOrganization.case.ts:82 ~ CreateOrganization ~ error:", error)
+			console.log(
+				'🚀 ~ file: createOrganization.case.ts:82 ~ CreateOrganization ~ error:',
+				error
+			);
 		}
 	}
 }

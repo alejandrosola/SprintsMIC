@@ -1,7 +1,8 @@
+import { Minors } from '../model/minors.enum';
 import { PlaceSchedule } from '../model/place-schedule.entity';
 import { Place } from '../model/place.entity';
-import { Minors } from '../model/minors.enum';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function esURL(url: string): boolean {
 	try {
 		new URL(url);
@@ -27,6 +28,14 @@ function isValidSchedule(schedule: PlaceSchedule): boolean {
 }
 
 export function validatePlace(aPlace: Place): void {
+	if (!aPlace.principalCategory) {
+		throw new Error('La principal categoría es requerida');
+	}
+
+	if (!aPlace.location) {
+		throw new Error('La ubicación es requerida');
+	}
+
 	if (aPlace.location.lat > 90 || aPlace.location.lat < -90) {
 		throw new Error('Latitud fuera de los limites permitidos');
 	}

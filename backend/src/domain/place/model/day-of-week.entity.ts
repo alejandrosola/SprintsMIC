@@ -1,4 +1,3 @@
-import { PlaceSchedule } from './place-schedule.entity';
 
 
 export class DayOfWeek {

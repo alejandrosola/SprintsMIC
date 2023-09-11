@@ -1,13 +1,17 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ICategoryRepository } from 'src/domain/category/port/iCategoryRepository';
 import { CreatePhoto } from 'src/domain/place/case/createPhoto.case';
 import { CreatePlace } from 'src/domain/place/case/createPlace.case';
 import { DeletePlace } from 'src/domain/place/case/deletePlace.case';
+import { FindByCategory } from 'src/domain/place/case/findByCategory.case';
+import { FindByDistance } from 'src/domain/place/case/findByDistance.case';
 import { FindPlaces } from 'src/domain/place/case/findPlaces.case';
 import { UpdatePlace } from 'src/domain/place/case/updatePlace.case';
 import { IPhotoRepository } from 'src/domain/place/port/iPhotoRepository';
 import { IPlaceRepository } from 'src/domain/place/port/iPlaceRepository';
 import { Category } from 'src/infrastructure/category/typeorm/model/category.entity';
+import { CategoryRepository } from 'src/infrastructure/category/typeorm/repository/category.repository';
 import { PlaceController } from 'src/infrastructure/place/rest/controller/place.controller';
 import { Accessibility } from 'src/infrastructure/place/typeorm/model/accesibility.entity';
 import { DayOfWeek } from 'src/infrastructure/place/typeorm/model/day-of-week.entity';
@@ -37,6 +41,8 @@ import { PlaceRepository } from 'src/infrastructure/place/typeorm/repository/pla
 		DeletePlace,
 		UpdatePlace,
 		CreatePhoto,
+		FindByDistance,
+		FindByCategory,
 		{
 			provide: IPlaceRepository,
 			useClass: PlaceRepository,
@@ -44,6 +50,10 @@ import { PlaceRepository } from 'src/infrastructure/place/typeorm/repository/pla
 		{
 			provide: IPhotoRepository,
 			useClass: PhotoRepository,
+		},
+		{
+			provide: ICategoryRepository,
+			useClass: CategoryRepository,
 		},
 	],
 })

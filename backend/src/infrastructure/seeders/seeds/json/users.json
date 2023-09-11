@@ -4,7 +4,7 @@
 		"name": "admin",
 		"password": "test",
 		"status": "ACTIVE",
-		"roles": ["CONSUMIDOR", "PRODUCTOR"]
+		"roles": ["ADMIN"]
 	},
 	{
 		"email": "example@example.com",
@@ -18,6 +18,20 @@
 		"name": "Lautaro",
 		"password": "test",
 		"status": "ACTIVE",
-		"roles": ["CONSUMIDOR"]
+		"roles": ["GESTION_MIC"]
+	},
+	{
+		"email": "ap.borda.c@gmail.com",
+		"name": "Paula",
+		"password": "test",
+		"status": "ACTIVE",
+		"roles": ["ADMIN"]
+	},
+	{
+		"email": "markeljaureguibehere@hotmail.com.ar",
+		"name": "Markel",
+		"password": "test",
+		"status": "ACTIVE",
+		"roles": ["GESTION_MIC"]
 	}
 ]

@@ -1,19 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { object, string } from 'yup';
-
-import { useRouter } from 'next/router';
 
 import BasicLayout from '@/layouts/BasicLayout';
 import Input from '@/components/Input/Input';
 import Label from '@/components/Label/Label';
 import Alert from '@/components/Alert/Alert';
-import Image from '@/components/Image/Image';
 import GenericForm from '@/components/Form/ValidationForm';
 import MainLayout from '@/layouts/MainLayout';
 import { sendPasswordTokenQuery } from '@/features/Users/hooks/useSendPasswordTokenQuery';
 
 const ForgotMyPassword = () => {
-    const router = useRouter();
 
     const [showInfo, setShowInfo] = useState(false);
     const [info, setInfo] = useState({

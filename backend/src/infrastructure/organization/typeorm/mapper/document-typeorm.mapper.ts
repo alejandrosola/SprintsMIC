@@ -7,6 +7,7 @@ export class DocumentMapper {
             id: document.id,
             name: document.name,
             url: document.url,
+            description: document.description,
             organization: document.organization,
             createdAt: document.createdAt,
             updatedAt: document.updatedAt,
@@ -19,6 +20,7 @@ export class DocumentMapper {
         typeORMDocument.id = domainDocument.id;
         typeORMDocument.name = domainDocument.name;
         typeORMDocument.url = domainDocument.url;
+        typeORMDocument.description = domainDocument.description;
         typeORMDocument.organization = domainDocument.organization;
         typeORMDocument.createdAt = domainDocument.createdAt;
         typeORMDocument.updatedAt = domainDocument.updatedAt;

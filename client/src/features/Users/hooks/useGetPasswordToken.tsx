@@ -13,6 +13,7 @@ const getTokenData = async (aPasswordToken: string | string[] | undefined) => {
         });
 };
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
     getTokenData,
 }

@@ -1,14 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Location } from 'src/domain/place/model/place-location';
 import { Place as DomainPlace } from 'src/domain/place/model/place.entity';
 import { IPlaceRepository } from 'src/domain/place/port/iPlaceRepository';
-import { Category as TypeORMCategory } from 'src/infrastructure/category/typeorm/model/category.entity';
+import {
+	Category,
+	Category as TypeORMCategory,
+} from 'src/infrastructure/category/typeorm/model/category.entity';
 import {
 	Place,
 	Place as TypeORMPlace,
 } from 'src/infrastructure/place/typeorm/model/place.entity';
 import { Repository } from 'typeorm';
 import { PlaceMapper } from '../mapper/place-typeorm.mapper';
+import { Accessibility } from '../model/accesibility.entity';
 import { DayOfWeek as TypeORMDayOfWeek } from '../model/day-of-week.entity';
 import {
 	PlaceCategory,
@@ -19,8 +24,11 @@ import {
 	PlaceSchedule,
 	PlaceSchedule as TypeORMPlaceSchedule,
 } from '../model/place-schedule.entity';
-import { Accessibility } from '../model/accesibility.entity';
 import { Service } from '../model/service.entity';
+
+
+import { Category as DomainCategory } from 'src/domain/category/model/category.entity';
+import { CategoryMapper } from 'src/infrastructure/category/typeorm/mapper/category.typeorm.mapper';
 
 @Injectable()
 export class PlaceRepository implements IPlaceRepository {
@@ -80,7 +88,182 @@ export class PlaceRepository implements IPlaceRepository {
 		return places.map((place) => PlaceMapper.toDomain(place));
 	}
 
+	async findByDistance(punto: Location): Promise<DomainPlace[]> {
+		try {
+			const places = await this.placeRepository
+				.createQueryBuilder('place')
+				.orderBy(
+					`ST_Distance(place.location::geography, ST_MakePoint(${punto.lat}, ${punto.lng})::geography)`
+				)
+				.getMany();
+
+			return places.map((place) => PlaceMapper.toDomain(place));
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	private async getFatherIds(category: TypeORMCategory): Promise<string[]> {
+		const someFathers = [];
+		let aFather = (
+			await this.categoryRepository.findOne({
+				where: { id: category.id },
+				relations: ['father'],
+			})
+		).father;
+
+		while (aFather) {
+			someFathers.push(aFather.id);
+			aFather = (
+				await this.categoryRepository.findOne({
+					where: { id: aFather.id },
+					relations: ['father'],
+				})
+			).father;
+		}
+
+		return someFathers;
+	}
+
+	async findByCategory(category: DomainCategory): Promise<DomainPlace[]> {
+		const typeORMCategory = CategoryMapper.toTypeORM(category);
+
+		const fatherIds = await this.getFatherIds(typeORMCategory);
+
+		const someCategoryPlaces = await this.placeRepository
+			.createQueryBuilder('place')
+			.leftJoinAndSelect('place.categories', 'categories')
+			.where('category.id = :catId', {
+				catId: typeORMCategory.id,
+			})
+			.leftJoinAndSelect('categories.category', 'category')
+			.leftJoinAndSelect('place.accessibilities', 'accessibilities')
+			.leftJoinAndSelect('place.services', 'services')
+			.leftJoinAndSelect('place.organization', 'organization')
+			.leftJoinAndSelect('place.schedules', 'schedules')
+			.leftJoinAndSelect('place.photos', 'photos')
+			.leftJoinAndSelect('place.principalCategory', 'principalCategory')
+			.orWhere('principalCategory.id = :catId', {
+				catId: typeORMCategory.id,
+			})
+			.leftJoinAndSelect('schedules.dayOfWeek', 'dayOfWeek')
+			.getMany();
+
+		const someFatherPlaces =
+			fatherIds.length != 0
+				? await this.placeRepository
+					.createQueryBuilder('place')
+					.leftJoinAndSelect('place.categories', 'categories')
+					.leftJoinAndSelect('categories.category', 'category')
+					.leftJoinAndSelect('category.father', 'father')
+					.where('father.id IN (:...fatherIds)', {
+						fatherIds: fatherIds,
+					})
+					.leftJoinAndSelect('place.accessibilities', 'accessibilities')
+					.leftJoinAndSelect('place.services', 'services')
+					.leftJoinAndSelect('place.organization', 'organization')
+					.leftJoinAndSelect('place.schedules', 'schedules')
+					.leftJoinAndSelect('place.photos', 'photos')
+					.leftJoinAndSelect('place.principalCategory', 'principalCategory')
+					.leftJoinAndSelect('principalCategory.father', 'principalFather')
+					.orWhere('principalFather.id IN (:...fatherIds)', {
+						fatherIds: fatherIds,
+					})
+					.leftJoinAndSelect('schedules.dayOfWeek', 'dayOfWeek')
+					.getMany()
+				: [];
+
+		let someChildrenPlaces = await this.placeRepository
+			.createQueryBuilder('place')
+			.leftJoinAndSelect('place.categories', 'categories')
+			.leftJoinAndSelect('categories.category', 'category')
+			.leftJoinAndSelect('category.father', 'father')
+			.where('father.id = :fatherId', {
+				fatherId: typeORMCategory.id,
+			})
+			.leftJoinAndSelect('place.accessibilities', 'accessibilities')
+			.leftJoinAndSelect('place.services', 'services')
+			.leftJoinAndSelect('place.organization', 'organization')
+			.leftJoinAndSelect('place.schedules', 'schedules')
+			.leftJoinAndSelect('place.photos', 'photos')
+			.leftJoinAndSelect('place.principalCategory', 'principalCategory')
+			.leftJoinAndSelect('principalCategory.father', 'principalFather')
+			.orWhere('principalFather.id = :fatherId', {
+				fatherId: typeORMCategory.id,
+			})
+			.leftJoinAndSelect('schedules.dayOfWeek', 'dayOfWeek')
+			.getMany();
+
+		let termine = false;
+		while (!termine) {
+			termine = true;
+			const newFatherIds = [];
+			someChildrenPlaces.forEach(async (place) => {
+				if (
+					(await this.getFatherIds(place.principalCategory)).includes(
+						typeORMCategory.id
+					)
+				) {
+					newFatherIds.push(place.principalCategory.id);
+				} else {
+					place.categories.forEach(async (category) => {
+						if (
+							(await this.getFatherIds(category.category)).includes(
+								typeORMCategory.id
+							)
+						) {
+							newFatherIds.push(category.category.id);
+						}
+					});
+				}
+			});
+			termine = newFatherIds.length != 0 ? false : true;
+			someChildrenPlaces =
+				newFatherIds.length != 0
+					? someChildrenPlaces.concat(
+						await this.placeRepository
+							.createQueryBuilder('place')
+							.leftJoinAndSelect('place.categories', 'categories')
+							.leftJoinAndSelect('categories.category', 'category')
+							.leftJoinAndSelect('category.father', 'father')
+							.where('father.id IN (:...fatherIds)', {
+								fatherIds: newFatherIds,
+							})
+							.leftJoinAndSelect('place.accessibilities', 'accessibilities')
+							.leftJoinAndSelect('place.services', 'services')
+							.leftJoinAndSelect('place.organization', 'organization')
+							.leftJoinAndSelect('place.schedules', 'schedules')
+							.leftJoinAndSelect('place.photos', 'photos')
+							.leftJoinAndSelect(
+								'place.principalCategory',
+								'principalCategory'
+							)
+							.leftJoinAndSelect(
+								'principalCategory.father',
+								'principalFather'
+							)
+							.orWhere('principalFather.id IN (:...fatherIds)', {
+								fatherIds: newFatherIds,
+							})
+							.leftJoinAndSelect('schedules.dayOfWeek', 'dayOfWeek')
+							.getMany()
+					)
+					: someChildrenPlaces;
+		}
+
+		const answer = someCategoryPlaces.concat(
+			someChildrenPlaces.concat(someFatherPlaces)
+		);
+
+		const uniquePlaces = Array.from(
+			new Set(answer.map((place) => place.id))
+		).map((id) => answer.find((place) => place.id === id));
+
+		return uniquePlaces.map((place) => PlaceMapper.toDomain(place));
+	}
+
 	async create(aPlace: DomainPlace): Promise<DomainPlace> {
+		console.log("Create en repository: ", aPlace)
 		const typeORMPlace = PlaceMapper.toTypeORM(aPlace);
 		typeORMPlace.schedules = await this.getScheduleDays(typeORMPlace);
 		typeORMPlace.principalCategory = await this.categoryRepository.findOne({
@@ -95,7 +278,7 @@ export class PlaceRepository implements IPlaceRepository {
 	}
 
 	async update(place: DomainPlace): Promise<DomainPlace> {
-		console.log("🚀 ~ file: place.repository.ts:98 ~ PlaceRepository ~ update ~ place:", place)
+
 		const placeEntity = await this.findById(place.id);
 		const placeORM = placeEntity ? PlaceMapper.toTypeORM(place) : null;
 
@@ -128,10 +311,19 @@ export class PlaceRepository implements IPlaceRepository {
 			}
 		}
 
+		for (const photo of placeEntity.photos) {
+			if (!placeORM.photos.find((aPhoto) => aPhoto.id === photo.id)) {
+				this.photoRepository.delete(photo.id);
+			}
+		}
+
 		placeORM.categories = await this.getCategories(placeORM);
 		placeEntity.photos.forEach((photo) => {
 			if (!placeORM.photos.find((aPhoto) => aPhoto.id === photo.id)) {
-				console.log("🚀 ~ file: place.repository.ts:133 ~ PlaceRepository ~ placeEntity.photos.forEach ~ photo.id:", photo.id)
+				console.log(
+					'🚀 ~ file: place.repository.ts:133 ~ PlaceRepository ~ placeEntity.photos.forEach ~ photo.id:',
+					photo.id
+				);
 				// this.photoRepository.delete(photo.id);
 			}
 		});
@@ -173,10 +365,10 @@ export class PlaceRepository implements IPlaceRepository {
 			await this.scheduleRepository.save(schedule);
 		});
 
-		/* place.photos.forEach(async (photo) => {
-			photo.place = place;
-			await this.photoRepository.save(photo);
-		}); */
+		//  place.photos.forEach(async (photo) => {
+		// 	photo.place = place;
+		// 	await this.photoRepository.save(photo);
+		// });
 
 		place.categories.forEach(async (placeCategory) => {
 			placeCategory.place = place;
@@ -229,5 +421,23 @@ export class PlaceRepository implements IPlaceRepository {
 			someCategories.push(category);
 		}
 		return someCategories;
+	}
+
+	private async getPrincipalCategory(place: TypeORMPlace): Promise<Category> {
+		const aPrincipalCategory = await this.categoryRepository.findOne({
+			where: { name: place.principalCategory.name },
+		});
+		return aPrincipalCategory;
+	}
+
+	private async getPhotos(place: TypeORMPlace): Promise<TypeORMPlacePhoto[]> {
+		const somePhotos: TypeORMPlacePhoto[] = [];
+		for (let photo of place.photos) {
+			photo = await this.photoRepository.findOne({
+				where: { photoUrl: photo.photoUrl },
+			});
+			somePhotos.push(photo);
+		}
+		return somePhotos;
 	}
 }

@@ -1,11 +1,12 @@
 import { Category } from 'src/domain/category/model/category.entity';
-import { PlaceSchedule } from './place-schedule.entity';
-import { PlacePhoto } from './place-photo.entity';
-import { Location } from './place-location';
-import { PlaceCategory } from './place-category.entity';
-import { Accessibility } from './accesibility.entity';
-import { Service } from './service.entity';
 import { Organization } from 'src/domain/organization/model/organization.entity';
+import { Accessibility } from './accesibility.entity';
+import { PlaceCategory } from './place-category.entity';
+import { Location } from './place-location';
+import { PlacePhoto } from './place-photo.entity';
+import { PlaceSchedule } from './place-schedule.entity';
+import { Service } from './service.entity';
+
 export class Place {
 	id: string;
 	name: string;
@@ -24,4 +25,7 @@ export class Place {
 	accessibilities: Accessibility[];
 	services: Service[];
 	organization: Organization;
+	facebook_url: string;
+	twitter_url: string;
+	instagram_url: string;
 }

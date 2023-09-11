@@ -23,6 +23,7 @@ export default NextAuth({
                     }
                     const userResponse = await login(credentials.email, credentials.password);
                     const user = userResponse.data;
+                    console.log("🚀 ~ file: [...nextauth].ts:26 ~ authorize: ~ user:", user)
                     if (user) {
                         return user;
                     } else {
@@ -45,5 +46,5 @@ export default NextAuth({
                 }
             }
         })
-    ],
+    ]
 });

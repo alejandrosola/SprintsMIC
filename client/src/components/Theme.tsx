@@ -98,6 +98,56 @@ const theme = createTheme({
         },
       ],
     },
+    MuiTextField: {
+      variants: [
+        {
+          props: { id: "search" }, //Boton de login
+          style: {
+            '& .MuiInputLabel-root': {
+              color: '#D1C1A7',
+              lineHeight: 'normal',
+            },
+            '& .MuiInputBase-input': {
+              color: '#B88268',
+              lineHeight: 'normal',
+            },
+            '& label.Mui-focused': {
+              color: '#B88268',
+              borderWidth: 3,
+              borderRadius: 10,
+              lineHeight: 'normal',
+            },
+            '& .MuiInput-underline:after': {
+              borderBottomColor: '#B88268',
+              borderWidth: 3,
+              borderRadius: 10,
+              lineHeight: 'normal',
+            },
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: '#B88268',
+                borderWidth: 3,
+                borderRadius: 10,
+                lineHeight: 'normal',
+              },
+              '&:hover fieldset': {
+                borderColor: '#B88268',
+                borderWidth: 3,
+                borderRadius: 10,
+                lineHeight: 'normal',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: '#B88268',
+                borderWidth: 3,
+                borderRadius: 10,
+                lineHeight: 'normal',
+              },
+            },
+            color: "red"
+          },
+        },
+      ],
+    },
     MuiTypography: {
       variants: [
         {
@@ -113,6 +163,21 @@ const theme = createTheme({
           style: {
             fontSize: 32,
             fontWeight: "bold",
+          },
+        },
+        {
+          props: { id: "card_title" }, //Componente de Texto Formulario
+          style: {
+            fontSize: 20,
+            fontWeight: "bold",
+            color: "#8EA2A5"
+          },
+        },
+        {
+          props: { id: "card_description" }, //Componente de Texto Formulario
+          style: {
+            fontSize: 16,
+            color: "#8EA2A5"
           },
         },
       ],

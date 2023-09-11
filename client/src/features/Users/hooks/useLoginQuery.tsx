@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 export const login = async (email: string, password: string) => {
 	const body = {
 		email: email,
